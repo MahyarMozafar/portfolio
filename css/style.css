@@ -1,0 +1,611 @@
+/* ---------- Tokens ---------- */
+:root{
+  --bg: #050608;
+  --bg-alt: #08090d;
+  --text: #edeef2;
+  --muted: #7d8698;
+  --faint: #4a5162;
+  --accent: #2f6fed;
+  --accent-soft: rgba(47,111,237,.30);
+  --border: rgba(255,255,255,.09);
+  --border-strong: rgba(255,255,255,.20);
+
+  --font-display: 'Vazirmatn', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Slow expo-out curve — luxury motion settles, it does not bounce. */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after{ box-sizing: border-box; }
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, p, ul{ margin: 0; padding: 0; }
+ul{ list-style: none; }
+a{ color: inherit; text-decoration: none; }
+img{ display: block; max-width: 100%; }
+button{ font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+:focus-visible{
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* A hairline divider used inside labels — the small editorial detail
+   that carries most of the "expensive" feeling. */
+.rule{
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--border-strong);
+  vertical-align: middle;
+}
+
+/* NOTE: Persian script is cursive — its letters join. Applying letter-spacing
+   to Farsi text visually breaks those joins. Tracking is therefore only ever
+   applied to Latin/mono runs, never to Farsi. */
+.eyebrow{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+.eyebrow__num{
+  font-variant-numeric: tabular-nums;
+  color: var(--faint);
+}
+
+.accent{ color: var(--accent); font-weight: 400; }
+
+.section-heading{
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.3;
+}
+.section-sub{
+  margin-top: .9rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ---------- Preloader ----------
+   Covers the font swap, which is very visible in Persian because the fallback
+   face looks nothing like Vazirmatn. It waits on the fonts and nothing else,
+   with a hard cap in JS — no fake progress. */
+.preload{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2.25rem;
+  transform: translateY(0);
+  transition: transform .9s var(--ease) .2s;
+  /* Failsafe: if the CDN scripts fail, main.js never runs and nothing would
+     remove this. Auto-clear it so a script error can never trap the page. */
+  animation: preload-failsafe 0s linear 2.5s forwards;
+}
+.preload__mark{
+  width: clamp(4.5rem, 14vw, 7rem);
+  height: auto;
+  opacity: 0;
+  /* Kept shorter than MIN_SHOW in main.js so the mark is fully in before it lifts. */
+  animation: preload-mark-in .55s var(--ease) forwards;
+}
+.preload__rule{
+  width: 5rem;
+  height: 1px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.preload__rule::after{
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -100%;
+  width: 100%;
+  background: var(--border-strong);
+  animation: preload-sweep 1.3s var(--ease) infinite;
+}
+.preload.is-done{ transform: translateY(-101%); }
+.preload.is-done .preload__mark,
+.preload.is-done .preload__rule{
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+}
+
+@keyframes preload-mark-in{ to{ opacity: 1; } }
+@keyframes preload-sweep{ to{ inset-inline-start: 100%; } }
+@keyframes preload-failsafe{ to{ transform: translateY(-101%); } }
+
+/* ---------- Grain overlay ---------- */
+.grain{
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: .045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Nav ---------- */
+.nav{
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem clamp(1.5rem, 7vw, 7rem);
+  transition: transform .7s var(--ease);
+}
+.nav--hidden{ transform: translateY(-130%); }
+/* Mark only — the name is carried by the hero, so repeating it here just
+   crowds the corner. aria-label keeps it announced for screen readers. */
+.nav__brand{
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-inline-start: -6px;   /* optical alignment with the text below */
+}
+.nav__brand img{ width: 40px; height: auto; }
+.nav__links{
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  font-size: .85rem;
+  color: var(--muted);
+}
+.nav__links a{ transition: color .5s var(--ease); }
+.nav__links a:hover{ color: var(--text); }
+
+/* Menu extras — only ever shown inside the mobile panel. */
+.nav__num, .nav__glow, .nav__note{ display: none; }
+
+/* Hamburger — hidden until the mobile breakpoint. Two hairlines of unequal
+   length (the asymmetry is the detail), squaring up as they cross into an X. */
+.nav__toggle{
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-inline-end: -10px;   /* keeps the bars optically aligned to the edge */
+  place-content: center;
+  justify-items: end;
+  gap: 7px;
+}
+.nav__toggle-bar{
+  width: 24px;
+  height: 1px;
+  background: var(--text);
+  transition: transform .5s var(--ease), width .5s var(--ease);
+}
+.nav__toggle-bar:nth-child(2){ width: 15px; }
+body.menu-open .nav__toggle-bar{ width: 24px; }
+body.menu-open .nav__toggle-bar:nth-child(1){ transform: translateY(4px) rotate(45deg); }
+body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero{
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  padding: 8rem clamp(1.5rem, 7vw, 7rem) 9rem;
+}
+
+/* The glow sits opposite the text so the empty half of the hero is
+   weighted rather than just blank. */
+.hero__blobs{ position: absolute; inset: 0; z-index: 0; }
+.blob{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  will-change: transform;
+}
+.blob--a{
+  width: 55vw; height: 55vw;
+  top: 5%;
+  inset-inline-end: -8%;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+.blob--b{
+  width: 38vw; height: 38vw;
+  bottom: -12%;
+  inset-inline-start: 5%;
+  background: radial-gradient(circle, rgba(47,111,237,.16) 0%, transparent 70%);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+@keyframes drift-a{
+  from{ transform: translate(0,0) scale(1); }
+  to{ transform: translate(-5%, 7%) scale(1.12); }
+}
+@keyframes drift-b{
+  from{ transform: translate(0,0) scale(1); }
+  to{ transform: translate(6%, -5%) scale(1.08); }
+}
+
+.hero__content{
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+}
+.hero__label{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+.hero__name{
+  font-size: clamp(2.4rem, 7.5vw, 5.2rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.hero__lens-wrap{ position: relative; display: inline-block; }
+
+/* Clipped, chromatically-split clone revealed under the cursor — the page's
+   one signature moment. Everything else is kept quiet so this lands. */
+.hero__lens-copy{
+  position: absolute;
+  inset: 0;
+  color: var(--text);
+  pointer-events: none;
+  filter: url(#glassLens);
+  clip-path: circle(0px at 50% 50%);
+  opacity: 0;
+  transition: opacity .4s var(--ease);
+}
+.hero__lens-copy.is-active{ opacity: 1; }
+
+.hero__tagline{
+  margin-top: 1.4rem;
+  font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+  color: var(--muted);
+}
+
+.hero__meta{
+  position: absolute;
+  bottom: clamp(2rem, 5vw, 3.5rem);
+  inset-inline-start: clamp(1.5rem, 7vw, 7rem);
+  z-index: 1;
+  font-size: .78rem;
+  line-height: 1.9;
+}
+.hero__meta .muted{ color: var(--muted); }
+
+.hero__scroll{
+  position: absolute;
+  bottom: clamp(2rem, 5vw, 3.5rem);
+  inset-inline-end: clamp(1.5rem, 7vw, 7rem);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .7rem;
+  font-size: .72rem;
+  color: var(--muted);
+}
+.hero__scroll-line{
+  width: 1px;
+  height: 3rem;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-line::after{
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border-strong));
+  animation: scroll-tick 3.2s var(--ease) infinite;
+}
+@keyframes scroll-tick{
+  0%{ top: -100%; }
+  55%{ top: 100%; }
+  100%{ top: 100%; }
+}
+
+/* ---------- Shared section frame ---------- */
+.bio, .projects, .contact{
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 7vw, 7rem);
+}
+
+/* ---------- Bio ---------- */
+/* Bio now follows the hero directly, so its top padding is kept tight —
+   the full-height hero above it already provides the breathing room. */
+.bio{
+  position: relative;
+  padding-block: clamp(3rem, 7vh, 5rem) clamp(5rem, 11vh, 8rem);
+}
+.bio__decor{
+  position: absolute;
+  top: 2rem;
+  inset-inline-end: -2rem;
+  color: var(--accent);
+  opacity: .07;
+  pointer-events: none;
+}
+.bio__text{
+  position: relative;
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  line-height: 2;
+  font-weight: 300;
+  max-width: 46rem;
+}
+
+/* ---------- Projects ---------- */
+.projects{ padding-block: clamp(5rem, 11vh, 8rem); }
+.projects__grid{
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+/* Hairline grid, not rounded boxes — solid rules read considered,
+   dashed borders read unfinished. */
+.project-card{
+  background: var(--bg);
+  padding: 3.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--faint);
+  font-size: .9rem;
+  transition: background .6s var(--ease), color .6s var(--ease);
+}
+.project-card:hover{ background: var(--bg-alt); color: var(--muted); }
+.project-card__icon{ display: inline-flex; }
+
+/* ---------- Contact ---------- */
+.contact{ padding-block: clamp(5rem, 11vh, 8rem) 4rem; }
+.contact__grid{
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 3rem 1.5rem;
+}
+.contact__cell{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+  text-align: center;
+}
+.contact__body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  min-width: 0;
+}
+.contact__btn{
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  transition: border-color .6s var(--ease), color .6s var(--ease), transform .6s var(--ease);
+}
+.contact__btn:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+.contact__label{ font-size: .85rem; }
+.contact__value-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  color: var(--faint);
+  min-width: 0;
+}
+.contact__value{
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .02em;
+  unicode-bidi: plaintext;
+  /* On a 320px screen the email is wider than its row. Wrapping keeps it
+     readable — the page clips overflow, so without this it would be cut off. */
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.contact__copy{
+  display: inline-flex;
+  padding: .25rem;
+  color: inherit;
+  transition: color .5s var(--ease);
+}
+.contact__copy:hover{ color: var(--text); }
+.contact__copy.is-copied{ color: var(--accent); }
+
+.footer{
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--faint);
+  font-size: .8rem;
+}
+
+/* ---------- Scroll reveals (GSAP toggles .is-visible) ---------- */
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(14px);
+}
+[data-reveal].is-visible{
+  opacity: 1;
+  transform: none;
+  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .blob{ animation: none; }
+  .hero__scroll-line::after{ animation: none; }
+  [data-reveal]{ opacity: 1; transform: none; }
+  [data-reveal].is-visible{ transition: none; }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px){
+  /* --- Nav: hamburger + full-screen panel --- */
+  .nav__toggle{ display: grid; }
+
+  .nav__links{
+    position: fixed;
+    inset: 0;
+    z-index: 45;              /* under .nav (50) so the close button stays on top */
+    background: var(--bg);
+    overflow: hidden;         /* clips the glow to the panel */
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    padding-inline: clamp(1.5rem, 7vw, 7rem);
+    color: var(--text);
+    transform: translateY(-100%);
+    visibility: hidden;
+    /* Visibility is delayed on close so the panel finishes sliding out first,
+       and flipped instantly on open. Keeps links out of the tab order while shut. */
+    transition: transform .7s var(--ease), visibility 0s linear .7s;
+  }
+  body.menu-open .nav__links{
+    transform: none;
+    visibility: visible;
+    transition: transform .7s var(--ease), visibility 0s;
+  }
+
+  /* Numbered rows on hairlines — the same editorial device the sections use. */
+  .nav__links a{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 1.1rem;
+    font-size: 2rem;
+    font-weight: 300;
+    padding-block: 1.15rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__links a:first-of-type{ border-top: 1px solid var(--border); }
+  .nav__num{
+    display: block;
+    font-size: .8rem;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .nav__note{
+    display: block;
+    position: absolute;
+    bottom: clamp(2rem, 7vw, 3rem);
+    inset-inline-start: clamp(1.5rem, 7vw, 7rem);
+    z-index: 1;
+    font-size: .8rem;
+    color: var(--muted);
+  }
+  /* Carries the accent into the menu so it is not a flat black slab. */
+  .nav__glow{
+    display: block;
+    position: absolute;
+    bottom: -25%;
+    inset-inline-start: -30%;
+    width: 95vw;
+    height: 95vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,111,237,.30) 0%, transparent 70%);
+    filter: blur(65px);
+    pointer-events: none;
+  }
+
+  /* --- Hero --- */
+  .hero{ padding-bottom: 8.5rem; }
+
+  /* A 120px blur on a 206px blob erases it. Scale the blobs up and the blur
+     down so the glow survives on a phone screen. */
+  .blob{ filter: blur(65px); }
+  .blob--a{
+    width: 120vw; height: 120vw;
+    top: -8%;
+    inset-inline-end: -30%;
+    background: radial-gradient(circle, rgba(47,111,237,.38) 0%, transparent 70%);
+  }
+  .blob--b{
+    width: 90vw; height: 90vw;
+    bottom: -10%;
+    inset-inline-start: -25%;
+    background: radial-gradient(circle, rgba(47,111,237,.22) 0%, transparent 70%);
+  }
+  .hero__meta{ font-size: .74rem; }
+  .hero__scroll span:last-child{ display: none; }
+  .hero__scroll{ padding: .5rem 1rem; }   /* the hairline alone is untappable */
+
+  /* --- Sections: tighter rhythm on a small screen --- */
+  .bio__decor{ width: 200px; }
+  .bio__decor svg{ width: 200px; height: 200px; }
+  .projects__grid{ margin-top: 2.5rem; }
+  .project-card{ padding: 2.5rem 1.25rem; }
+
+  /* --- Contact: stacked rows read better than a cramped grid --- */
+  .contact__grid{
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .contact__cell{
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+    gap: 1rem;
+    padding-block: .6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact__btn{ width: 3rem; height: 3rem; flex-shrink: 0; }
+  .contact__body{ align-items: flex-start; flex: 1; }
+  .contact__value-row{ justify-content: flex-start; }
+  .contact__value{ font-size: .8rem; }
+  /* 44px is the iOS minimum touch target — the icon stays small, the hit area does not. */
+  .contact__copy{
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .footer{ margin-top: 3rem; }
+}

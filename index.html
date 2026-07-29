@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مهیار مظفر — توسعه‌دهنده پایتون و هوش مصنوعی</title>
+<meta name="description" content="مهیار مظفر، توسعه‌دهنده پایتون و علاقه‌مند به هوش مصنوعی و ساخت وب‌سایت.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Filter for the glass-lens hover effect. Splits the RGB channels apart slightly
+     so the text under the cursor refracts like it is seen through glass. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="glassLens" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red"/>
+      <feOffset in="red" dx="-3" dy="0" result="redOffset"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue"/>
+      <feOffset in="blue" dx="3" dy="0" result="blueOffset"/>
+      <feBlend in="redOffset" in2="green" mode="screen" result="rg"/>
+      <feBlend in="rg" in2="blueOffset" mode="screen"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="preload" id="preload" aria-hidden="true">
+  <img class="preload__mark" src="assets/logo.svg" alt="" width="112" height="112">
+  <span class="preload__rule"></span>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__brand" aria-label="مهیار مظفر — رفتن به ابتدای صفحه">
+    <img src="assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <a href="#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="#projects"><span class="nav__num" aria-hidden="true">۰۲</span><span>پروژه‌ها</span></a>
+    <a href="#contact"><span class="nav__num" aria-hidden="true">۰۳</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" id="hero">
+    <div class="hero__blobs" aria-hidden="true">
+      <span class="blob blob--a"></span>
+      <span class="blob blob--b"></span>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__label">
+        <span class="rule" aria-hidden="true"></span>
+        پایتون · هوش مصنوعی · وب
+      </p>
+
+      <!-- Base text and lens copy sit flush with no whitespace between them so the
+           absolutely-positioned copy overlays the base exactly. -->
+      <h1 class="hero__name"><span class="hero__lens-wrap"><span>مهیار مظفر</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy">مهیار مظفر</span></span></h1>
+
+      <p class="hero__tagline">
+        توسعه‌دهنده پایتون و علاقه‌مند به <span class="accent">هوش مصنوعی</span>
+      </p>
+    </div>
+
+    <div class="hero__meta">
+      <p>پایتون · وب‌سایت · هوش مصنوعی</p>
+      <p class="muted">در دسترس برای همکاری</p>
+    </div>
+
+    <a href="#bio" class="hero__scroll" aria-label="اسکرول به پایین">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+      <span>اسکرول</span>
+    </a>
+  </section>
+
+  <section class="bio" id="bio">
+    <div class="bio__decor" aria-hidden="true">
+      <svg viewBox="0 0 300 300" width="300" height="300">
+        <path d="M20 260 C 80 260, 60 160, 140 160 S 220 60, 280 60" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۱</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>بیوگرافی</span>
+    </p>
+
+    <p class="bio__text" data-reveal>
+      من مهیار مظفرم. با پایتون کار می‌کنم، وب‌سایت می‌سازم و علاقه‌مند به هوش مصنوعی هستم. وقتی روی کاری کار می‌کنم، همیشه انگار برای خودم دارم انجامش می‌دهم؛ همین باعث می‌شه هر پروژه رو با دل و جون جلو ببرم. هنوز در حال یادگیری‌ام و همین یادگیری، انگیزه‌ی هر روزمه.
+    </p>
+  </section>
+
+  <section class="projects" id="projects">
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۲</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>پروژه‌ها</span>
+    </p>
+
+    <h2 class="section-heading" data-reveal>به‌زودی</h2>
+    <p class="section-sub" data-reveal>پروژه‌های من به‌زودی همین‌جا قرار می‌گیرند.</p>
+
+    <div class="projects__grid">
+      <article class="project-card" data-reveal>
+        <span class="project-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/>
+          </svg>
+        </span>
+        <p>به‌زودی</p>
+      </article>
+      <article class="project-card" data-reveal>
+        <span class="project-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/>
+          </svg>
+        </span>
+        <p>به‌زودی</p>
+      </article>
+      <article class="project-card" data-reveal>
+        <span class="project-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/>
+          </svg>
+        </span>
+        <p>به‌زودی</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۳</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>تماس</span>
+    </p>
+
+    <h2 class="section-heading" data-reveal>بیایید در ارتباط باشیم</h2>
+
+    <ul class="contact__grid" data-reveal>
+      <li class="contact__cell">
+        <a class="contact__btn" href="mailto:applemahyar7@gmail.com" aria-label="ارسال ایمیل به مهیار">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 7.5l9 6 9-6"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">ایمیل</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">applemahyar7@gmail.com</span>
+            <button class="contact__copy" type="button" data-copy="applemahyar7@gmail.com" aria-label="کپی ایمیل">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+      <li class="contact__cell">
+        <a class="contact__btn" href="https://t.me/MahyarMozafar" target="_blank" rel="noopener" aria-label="تلگرام مهیار">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M21 4 3 11l6 2m12-9-4 17-8-6m12-11L9 13"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">تلگرام</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">@MahyarMozafar</span>
+            <button class="contact__copy" type="button" data-copy="@MahyarMozafar" aria-label="کپی آیدی تلگرام">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+      <li class="contact__cell">
+        <a class="contact__btn" href="https://instagram.com/mahy9r" target="_blank" rel="noopener" aria-label="اینستاگرام مهیار">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">اینستاگرام</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">@mahy9r</span>
+            <button class="contact__copy" type="button" data-copy="@mahy9r" aria-label="کپی آیدی اینستاگرام">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+    </ul>
+
+    <footer class="footer">
+      <img src="assets/logo.svg" alt="" width="20" height="20">
+      <span>© مهیار مظفر</span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
