@@ -22,6 +22,20 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after{ box-sizing: border-box; }
+
+/* The page must only ever scroll vertically. Two things are needed for that,
+   and the sideways drag on phones came from having neither:
+   - the rule has to sit on <html> as well. On <body> alone the root element is
+     still free to scroll, so a decorative bleed could pan the whole page.
+   - `clip` rather than `hidden`. `hidden` makes the element a scroll *container*
+     — it merely hides the scrollbar, and touch gestures can still pan it. `clip`
+     creates no scroll container at all, so the drag is impossible.
+   `hidden` is kept first as a fallback for engines without `clip`. */
+html, body{
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;   /* kills the horizontal rubber-band on iOS */
+}
 body{
   margin: 0;
   background: var(--bg);
@@ -30,7 +44,6 @@ body{
   font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 h1, h2, p, ul{ margin: 0; padding: 0; }
 ul{ list-style: none; }
@@ -633,7 +646,10 @@ main{ position: relative; z-index: 1; }
   .hero__scroll{ padding: .5rem 1rem; }   /* the hairline alone is untappable */
 
   /* --- Sections: tighter rhythm on a small screen --- */
-  .bio__decor{ width: 200px; }
+  /* Pulled flush with the section edge. The desktop bleed hangs into the page
+     margin, which a phone does not have — there it hung off the viewport and
+     was what dragged the page sideways. */
+  .bio__decor{ width: 200px; inset-inline-end: 0; }
   .bio__decor svg{ width: 200px; height: 200px; }
   .projects__grid{ margin-top: 2.5rem; grid-template-columns: 1fr; }
   .project-card{ padding: 2.5rem 1.25rem; }

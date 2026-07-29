@@ -33,8 +33,10 @@ function lockScroll(locked) {
   if (lenis) {
     if (locked) lenis.stop(); else lenis.start();
   } else {
-    document.documentElement.style.overflow = locked ? 'hidden' : '';
-    document.body.style.overflow = locked ? 'hidden' : '';
+    /* overflowY, not the shorthand: the shorthand would also overwrite the
+       overflow-x clip that keeps the page from ever scrolling sideways. */
+    document.documentElement.style.overflowY = locked ? 'hidden' : '';
+    document.body.style.overflowY = locked ? 'hidden' : '';
   }
 }
 
