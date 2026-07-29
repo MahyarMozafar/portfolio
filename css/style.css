@@ -9,6 +9,9 @@
   --accent-soft: rgba(47,111,237,.30);
   --border: rgba(255,255,255,.09);
   --border-strong: rgba(255,255,255,.20);
+  /* Solid twin of --border over --bg. Used where two hairlines meet in the
+     same pixel: alpha would compound there and read brighter than one line. */
+  --hairline: #1c1c1e;
 
   --font-display: 'Vazirmatn', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -359,18 +362,24 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
 
 /* ---------- Projects ---------- */
 .projects{ padding-block: clamp(5rem, 11vh, 8rem); }
+/* Fixed at three columns rather than auto-fit: auto-fit will happily drop to
+   two, which leaves three cards sitting 2-over-1 and looking lopsided. Three
+   across, or one per row below the breakpoint — never two. */
 .projects__grid{
   margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
 }
 /* Hairline grid, not rounded boxes — solid rules read considered,
-   dashed borders read unfinished. */
+   dashed borders read unfinished.
+   Each card draws its own hairline rather than the container painting one
+   behind the gaps: a container background also fills any *empty* cell in an
+   incomplete row, which showed up as a grey block. Neighbouring shadows meet
+   inside the 1px gap and read as a single shared line. */
 .project-card{
   background: var(--bg);
+  box-shadow: 0 0 0 1px var(--hairline);
   padding: 3.5rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -575,7 +584,7 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
   /* --- Sections: tighter rhythm on a small screen --- */
   .bio__decor{ width: 200px; }
   .bio__decor svg{ width: 200px; height: 200px; }
-  .projects__grid{ margin-top: 2.5rem; }
+  .projects__grid{ margin-top: 2.5rem; grid-template-columns: 1fr; }
   .project-card{ padding: 2.5rem 1.25rem; }
 
   /* --- Contact: stacked rows read better than a cramped grid --- */
