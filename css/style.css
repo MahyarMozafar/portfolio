@@ -1,7 +1,7 @@
 /* ---------- Tokens ---------- */
 :root{
+  /* One background tone for the whole page — no second shade anywhere. */
   --bg: #050608;
-  --bg-alt: #08090d;
   --text: #edeef2;
   --muted: #7d8698;
   --faint: #4a5162;
@@ -116,13 +116,16 @@ button{ font: inherit; color: inherit; background: none; border: none; cursor: p
   position: relative;
   overflow: hidden;
 }
+/* Swept with transform rather than inset: transform stays on the compositor,
+   an inset animation repaints every frame. */
 .preload__rule::after{
   content: "";
   position: absolute;
   inset-block: 0;
-  inset-inline-start: -100%;
+  inset-inline-start: 0;
   width: 100%;
   background: var(--border-strong);
+  transform: translateX(-100%);
   animation: preload-sweep 1.3s var(--ease) infinite;
 }
 .preload.is-done{ transform: translateY(-101%); }
@@ -133,7 +136,7 @@ button{ font: inherit; color: inherit; background: none; border: none; cursor: p
 }
 
 @keyframes preload-mark-in{ to{ opacity: 1; } }
-@keyframes preload-sweep{ to{ inset-inline-start: 100%; } }
+@keyframes preload-sweep{ to{ transform: translateX(100%); } }
 @keyframes preload-failsafe{ to{ transform: translateY(-101%); } }
 
 /* ---------- Grain overlay ---------- */
@@ -180,7 +183,7 @@ button{ font: inherit; color: inherit; background: none; border: none; cursor: p
 .nav__links a:hover{ color: var(--text); }
 
 /* Menu extras — only ever shown inside the mobile panel. */
-.nav__num, .nav__glow, .nav__note{ display: none; }
+.nav__num, .nav__glow, .nav__note, .nav__close{ display: none; }
 
 /* Hamburger — hidden until the mobile breakpoint. Two hairlines of unequal
    length (the asymmetry is the detail), squaring up as they cross into an X. */
@@ -214,9 +217,18 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
   padding: 8rem clamp(1.5rem, 7vw, 7rem) 9rem;
 }
 
-/* The glow sits opposite the text so the empty half of the hero is
-   weighted rather than just blank. */
-.hero__blobs{ position: absolute; inset: 0; z-index: 0; }
+/* Fixed rather than living inside the hero: the hero clipped it, so only the
+   hero had atmosphere while every section below sat on flat black. Pinning it
+   to the viewport means one continuous background runs the whole page. */
+.bg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+main{ position: relative; z-index: 1; }
+
 .blob{
   position: absolute;
   border-radius: 50%;
@@ -225,15 +237,15 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
 }
 .blob--a{
   width: 55vw; height: 55vw;
-  top: 5%;
+  top: 0;
   inset-inline-end: -8%;
   background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
   animation: drift-a 26s ease-in-out infinite alternate;
 }
 .blob--b{
-  width: 38vw; height: 38vw;
+  width: 42vw; height: 42vw;
   bottom: -12%;
-  inset-inline-start: 5%;
+  inset-inline-start: 0;
   background: radial-gradient(circle, rgba(47,111,237,.16) 0%, transparent 70%);
   animation: drift-b 32s ease-in-out infinite alternate;
 }
@@ -244,6 +256,12 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
 @keyframes drift-b{
   from{ transform: translate(0,0) scale(1); }
   to{ transform: translate(6%, -5%) scale(1.08); }
+}
+/* Mobile drift: translate only. Scaling a composited layer forces a repaint,
+   moving one does not. */
+@keyframes drift-flat{
+  from{ transform: translate(0,0); }
+  to{ transform: translate(-5%, 7%); }
 }
 
 .hero__content{
@@ -315,19 +333,21 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
   position: relative;
   overflow: hidden;
 }
+/* transform, not top — same reason as the preloader sweep. */
 .hero__scroll-line::after{
   content: "";
   position: absolute;
   inset-inline: 0;
-  top: -100%;
+  top: 0;
   height: 100%;
   background: linear-gradient(to bottom, transparent, var(--border-strong));
+  transform: translateY(-100%);
   animation: scroll-tick 3.2s var(--ease) infinite;
 }
 @keyframes scroll-tick{
-  0%{ top: -100%; }
-  55%{ top: 100%; }
-  100%{ top: 100%; }
+  0%{ transform: translateY(-100%); }
+  55%{ transform: translateY(100%); }
+  100%{ transform: translateY(100%); }
 }
 
 /* ---------- Shared section frame ---------- */
@@ -378,7 +398,9 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
    incomplete row, which showed up as a grey block. Neighbouring shadows meet
    inside the 1px gap and read as a single shared line. */
 .project-card{
-  background: var(--bg);
+  /* transparent, not a solid fill — a fill would punch an opaque block out of
+     the page-wide glow, which is what made the cards read as a second shade */
+  background: transparent;
   box-shadow: 0 0 0 1px var(--hairline);
   padding: 3.5rem 1.5rem;
   display: flex;
@@ -389,7 +411,11 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
   font-size: .9rem;
   transition: background .6s var(--ease), color .6s var(--ease);
 }
-.project-card:hover{ background: var(--bg-alt); color: var(--muted); }
+/* A faint tint rather than a different background colour. :hover sticks after
+   a tap on touch screens, and a solid second shade left a grey block behind. */
+@media (hover: hover){
+  .project-card:hover{ background: rgba(255,255,255,.02); color: var(--muted); }
+}
 .project-card__icon{ display: inline-flex; }
 
 /* ---------- Contact ---------- */
@@ -517,6 +543,26 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
     transition: transform .7s var(--ease), visibility 0s;
   }
 
+  /* An explicit bordered X reads as "close" far more plainly than two
+     hairlines crossing. The hamburger steps aside while the panel is open
+     so there is only ever one close control. */
+  body.menu-open .nav__toggle{ display: none; }
+  .nav__close{
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 1.6rem;
+    inset-inline-end: calc(clamp(1.5rem, 7vw, 7rem) - 10px);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    color: var(--text);
+    transition: border-color .5s var(--ease), color .5s var(--ease);
+  }
+  .nav__close:active{ border-color: var(--accent); color: var(--accent); }
+
   /* Numbered rows on hairlines — the same editorial device the sections use. */
   .nav__links a{
     position: relative;
@@ -562,23 +608,28 @@ body.menu-open .nav__toggle-bar:nth-child(2){ transform: translateY(-4px) rotate
   /* --- Hero --- */
   .hero{ padding-bottom: 8.5rem; }
 
-  /* A 120px blur on a 206px blob erases it. Scale the blobs up and the blur
-     down so the glow survives on a phone screen. */
-  .blob{ filter: blur(65px); }
+  /* A radial gradient is already soft, so the blur filter on top of it was
+     redundant — and because the drift also scales, that blur had to be
+     re-rasterised across a ~1400px surface every single frame. Dropping the
+     filter and the scale is the single biggest mobile win here.
+     One blob instead of two halves the compositing work again. */
+  .blob{ filter: none; }
   .blob--a{
-    width: 120vw; height: 120vw;
+    width: 115vw; height: 115vw;
     top: -8%;
     inset-inline-end: -30%;
-    background: radial-gradient(circle, rgba(47,111,237,.38) 0%, transparent 70%);
+    background: radial-gradient(circle,
+      rgba(47,111,237,.30) 0%,
+      rgba(47,111,237,.13) 38%,
+      transparent 68%);
+    animation: drift-flat 26s ease-in-out infinite alternate;
   }
-  .blob--b{
-    width: 90vw; height: 90vw;
-    bottom: -10%;
-    inset-inline-start: -25%;
-    background: radial-gradient(circle, rgba(47,111,237,.22) 0%, transparent 70%);
-  }
+  .blob--b{ display: none; }
+
+  /* A fixed, blend-mode layer must be re-composited over the whole viewport
+     on every scroll frame. Plain alpha costs a fraction of that. */
+  .grain{ mix-blend-mode: normal; opacity: .03; }
   .hero__meta{ font-size: .74rem; }
-  .hero__scroll span:last-child{ display: none; }
   .hero__scroll{ padding: .5rem 1rem; }   /* the hairline alone is untappable */
 
   /* --- Sections: tighter rhythm on a small screen --- */

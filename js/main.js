@@ -1,22 +1,52 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = window.matchMedia('(hover: none)').matches;
 
-/* ---------- Smooth scroll (Lenis), driven by GSAP's ticker ---------- */
-const lenis = new Lenis({ duration: prefersReducedMotion ? 0 : 1.1 });
-gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
-lenis.on('scroll', ScrollTrigger.update);
+/* ---------- Scroll ----------
+   Lenis is desktop-only on purpose. It does not smooth touch scrolling anyway
+   (syncTouch is off by default), so on a phone it is a permanent rAF loop
+   costing frames for no visual gain — while native momentum scrolling is
+   already smooth and runs off the main thread. */
+const useSmoothScroll = !isTouch && !prefersReducedMotion;
 
-/* smooth in-page anchor links */
+let lenis = null;
+if (useSmoothScroll) {
+  lenis = new Lenis({ duration: 1.1 });
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.on('scroll', ScrollTrigger.update);
+}
+
+/* One interface over both modes, so nothing below has to care which is live. */
+function onScroll(fn) {
+  if (lenis) lenis.on('scroll', ({ scroll }) => fn(scroll));
+  else window.addEventListener('scroll', () => fn(window.scrollY), { passive: true });
+}
+
+function scrollToEl(el) {
+  if (lenis) lenis.scrollTo(el);
+  else el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+}
+
+function lockScroll(locked) {
+  if (lenis) {
+    if (locked) lenis.stop(); else lenis.start();
+  } else {
+    document.documentElement.style.overflow = locked ? 'hidden' : '';
+    document.body.style.overflow = locked ? 'hidden' : '';
+  }
+}
+
+/* in-page anchor links */
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (e) => {
     const target = document.querySelector(link.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      /* Close first: this restarts Lenis, which scrollTo needs in order to run. */
+      /* Close first — that releases the scroll lock, which the scroll needs. */
       setMenu(false);
-      lenis.scrollTo(target);
+      scrollToEl(target);
     }
   });
 });
@@ -24,6 +54,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 /* ---------- Nav ---------- */
 const nav = document.getElementById('nav');
 const navToggle = document.getElementById('navToggle');
+const navClose = document.getElementById('navClose');
 const navMenu = document.getElementById('navMenu');
 const menuRows = navMenu ? navMenu.querySelectorAll('a, .nav__note') : [];
 
@@ -32,15 +63,22 @@ function menuIsOpen() {
 }
 
 function setMenu(open) {
+  const wasOpen = menuIsOpen();
   document.body.classList.toggle('menu-open', open);
+
   if (navToggle) {
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'بستن منو' : 'باز کردن منو');
   }
-  /* The nav may have been auto-hidden by a previous scroll down — make sure
+
+  /* The nav may have been auto-hidden by an earlier scroll down — make sure
      the close button is on screen whenever the menu is open. */
   if (open) nav.classList.remove('nav--hidden');
-  if (open) lenis.stop(); else lenis.start();
+  lockScroll(open);
+
+  /* The hamburger is hidden while open, so focus has to move with the control
+     or it would be lost on a display:none element. */
+  if (open && navClose) navClose.focus();
+  else if (wasOpen && !open && navToggle) navToggle.focus();
 
   /* Rows arrive one after another once the panel has slid in. */
   if (open && menuRows.length && !prefersReducedMotion) {
@@ -52,9 +90,8 @@ function setMenu(open) {
   }
 }
 
-if (navToggle) {
-  navToggle.addEventListener('click', () => setMenu(!menuIsOpen()));
-}
+if (navToggle) navToggle.addEventListener('click', () => setMenu(true));
+if (navClose) navClose.addEventListener('click', () => setMenu(false));
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && menuIsOpen()) setMenu(false);
@@ -66,16 +103,19 @@ window.matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
   if (e.matches && menuIsOpen()) setMenu(false);
 });
 
-/* hide on scroll down, show on scroll up */
+/* hide on scroll down, show on scroll up — coalesced into one frame, since
+   native scroll events fire far more often than the screen refreshes */
 let lastScroll = 0;
-lenis.on('scroll', ({ scroll }) => {
-  if (menuIsOpen()) return;
-  if (scroll > lastScroll && scroll > 120) {
-    nav.classList.add('nav--hidden');
-  } else {
-    nav.classList.remove('nav--hidden');
-  }
-  lastScroll = scroll;
+let navQueued = false;
+onScroll((y) => {
+  if (navQueued) return;
+  navQueued = true;
+  requestAnimationFrame(() => {
+    navQueued = false;
+    if (menuIsOpen()) return;
+    nav.classList.toggle('nav--hidden', y > lastScroll && y > 120);
+    lastScroll = y;
+  });
 });
 
 /* ---------- Hero load-in (held until the preloader lifts) ---------- */
@@ -97,7 +137,7 @@ function revealSite() {
   if (revealed) return;
   revealed = true;
   if (preload) preload.classList.add('is-done');
-  lenis.start();
+  lockScroll(false);
   heroIntro.play();
 }
 
@@ -107,7 +147,7 @@ const HARD_CAP = 1000;                            // never hold the page longer 
 if (!preload) {
   revealSite();
 } else {
-  lenis.stop();
+  lockScroll(true);
   const startedAt = performance.now();
   const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
 
@@ -148,6 +188,7 @@ document.querySelectorAll('[data-reveal]').forEach((el) => {
     trigger: el,
     start: 'top 88%',
     onEnter: () => el.classList.add('is-visible'),
+    once: true,
   });
 });
 

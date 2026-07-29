@@ -37,6 +37,13 @@
   <span class="preload__rule"></span>
 </div>
 
+<!-- One atmosphere for the entire page. Fixed, so every section sits on the
+     same living background instead of the hero alone having a glow. -->
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+
 <div class="grain" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
@@ -51,6 +58,11 @@
 
   <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
     <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
     <a href="#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
     <a href="#projects"><span class="nav__num" aria-hidden="true">۰۲</span><span>پروژه‌ها</span></a>
     <a href="#contact"><span class="nav__num" aria-hidden="true">۰۳</span><span>تماس</span></a>
@@ -61,11 +73,6 @@
 <main>
 
   <section class="hero" id="hero">
-    <div class="hero__blobs" aria-hidden="true">
-      <span class="blob blob--a"></span>
-      <span class="blob blob--b"></span>
-    </div>
-
     <div class="hero__content">
       <p class="hero__label">
         <span class="rule" aria-hidden="true"></span>
