@@ -35,6 +35,13 @@ html, body{
   overflow-x: hidden;
   overflow-x: clip;
   overscroll-behavior-x: none;   /* kills the horizontal rubber-band on iOS */
+  /* The decisive fix for mobile Safari: `overflow-x: hidden`/`clip` stop the
+     page from *having* horizontal scroll room, but WebKit has a long-standing
+     bug where a finger-drag can still pan the page sideways regardless.
+     touch-action tells the browser which gesture directions to honor at all —
+     pan-y allows vertical drag and pinch-zoom, and simply drops any sideways
+     component of a drag instead of turning it into a scroll. */
+  touch-action: pan-y;
 }
 body{
   margin: 0;
