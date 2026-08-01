@@ -371,7 +371,7 @@ main{ position: relative; z-index: 1; }
 }
 
 /* ---------- Shared section frame ---------- */
-.bio, .projects, .contact{
+.bio, .skills, .projects, .contact{
   max-width: 68rem;
   margin-inline: auto;
   padding-inline: clamp(1.5rem, 7vw, 7rem);
@@ -437,6 +437,53 @@ main{ position: relative; z-index: 1; }
   .project-card:hover{ background: rgba(255,255,255,.02); color: var(--muted); }
 }
 .project-card__icon{ display: inline-flex; }
+
+/* ---------- Skills ---------- */
+.skills{ padding-block: clamp(5rem, 11vh, 8rem); }
+
+/* Four cards as 2×2, not four-across or auto-fit. 4 divides evenly into two
+   balanced rows — like the projects grid, this avoids the lopsided orphan an
+   auto-fit layout can strand. And unlike a project-card (icon + one word),
+   each of these carries a title plus a running sentence, so the wider column
+   a 2×2 gives keeps that text from wrapping cramped. */
+.skills__grid{
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+}
+.skill-card{
+  background: transparent;
+  box-shadow: 0 0 0 1px var(--hairline);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  /* Start-aligned (visual right under RTL), not centered like project-card:
+     a title + full sentence reads better anchored to the reading edge than
+     floated in the middle. */
+  align-items: flex-start;
+  gap: 1rem;
+  transition: background .6s var(--ease);
+}
+.skill-card__icon{
+  display: inline-flex;
+  color: var(--faint);
+  transition: color .6s var(--ease);
+}
+.skill-card__title{
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text);
+}
+.skill-card__desc{
+  font-size: .9rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+@media (hover: hover){
+  .skill-card:hover{ background: rgba(255,255,255,.02); }
+  .skill-card:hover .skill-card__icon{ color: var(--muted); }
+}
 
 /* ---------- Contact ---------- */
 .contact{ padding-block: clamp(5rem, 11vh, 8rem) 4rem; }
@@ -660,6 +707,8 @@ main{ position: relative; z-index: 1; }
   .bio__decor svg{ width: 200px; height: 200px; }
   .projects__grid{ margin-top: 2.5rem; grid-template-columns: 1fr; }
   .project-card{ padding: 2.5rem 1.25rem; }
+  .skills__grid{ margin-top: 2.5rem; grid-template-columns: 1fr; }
+  .skill-card{ padding: 2.5rem 1.5rem; }
 
   /* --- Contact: stacked rows read better than a cramped grid --- */
   .contact__grid{
