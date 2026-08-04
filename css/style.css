@@ -412,7 +412,7 @@ main{ position: relative; z-index: 1; }
 }
 
 /* ---------- Shared section frame ---------- */
-.bio, .skills, .projects, .contact{
+.bio, .skills, .projects, .writing, .contact{
   max-width: 68rem;
   margin-inline: auto;
   padding-inline: clamp(1.5rem, 7vw, 7rem);
@@ -525,6 +525,88 @@ main{ position: relative; z-index: 1; }
   .skill-card:hover{ background: rgba(255,255,255,.02); }
   .skill-card:hover .skill-card__icon{ color: var(--muted); }
 }
+
+/* ---------- Writing ----------
+   Rows, not another grid. Skills, projects and contact are all grids already,
+   and a fourth would flatten the page's rhythm — while a post title needs the
+   full width to breathe rather than being squeezed into a column. The hairline
+   between rows is the same one the cards use, so it still reads as one system. */
+.writing{ padding-block: clamp(5rem, 11vh, 8rem); }
+
+.writing__list{
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.writing__row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  column-gap: clamp(1rem, 3vw, 2.25rem);
+  padding-block: 1.9rem;
+  padding-inline: 1rem;
+  /* pulled out so the hover wash bleeds past the text without shifting it */
+  margin-inline: -1rem;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .6s var(--ease);
+}
+.writing__num{
+  font-variant-numeric: tabular-nums;
+  font-size: .8rem;
+  color: var(--faint);
+  transition: color .6s var(--ease);
+}
+.writing__title{
+  display: block;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text);
+}
+.writing__desc{
+  display: block;
+  margin-top: .5rem;
+  font-size: .88rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 54ch;
+}
+/* The far-edge column carries each post's topic rather than its reading time.
+   All four posts run to the same length, so a column of identical durations was
+   four repetitions of one fact; the topic varies and is what someone scanning
+   the list actually wants to know. */
+.writing__tag{
+  font-size: .74rem;
+  letter-spacing: .02em;
+  color: var(--faint);
+  white-space: nowrap;
+  padding: .3rem .7rem;
+  box-shadow: 0 0 0 1px var(--hairline);
+  transition: color .6s var(--ease), box-shadow .6s var(--ease);
+}
+
+@media (hover: hover){
+  .writing__row:hover{ background: rgba(255,255,255,.02); }
+  .writing__row:hover .writing__num{ color: var(--muted); }
+  .writing__row:hover .writing__tag{
+    color: var(--muted);
+    box-shadow: 0 0 0 1px var(--border);
+  }
+}
+
+/* Reads as the end of the list rather than a button — the rows above already
+   carry the weight, and a filled button here would shout over them. */
+.writing__all{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: 2.25rem;
+  font-size: .9rem;
+  color: var(--muted);
+  transition: color .5s var(--ease);
+}
+.writing__all:hover{ color: var(--text); }
+.writing__all svg{ transition: transform .5s var(--ease); }
+.writing__all:hover svg{ transform: translateX(-4px); }
 
 /* ---------- Contact ---------- */
 .contact{ padding-block: clamp(5rem, 11vh, 8rem) 4rem; }
@@ -757,6 +839,19 @@ main{ position: relative; z-index: 1; }
   .project-card{ padding: 2.5rem 1.25rem; }
   .skills__grid{ margin-top: 2.5rem; grid-template-columns: 1fr; }
   .skill-card{ padding: 2.5rem 1.5rem; }
+
+  /* --- Writing: the reading time drops under the title rather than fighting
+         it for room on a narrow screen --- */
+  .writing__list{ margin-top: 2.5rem; }
+  .writing__row{
+    grid-template-columns: auto 1fr;
+    padding-block: 1.6rem;
+  }
+  .writing__tag{
+    grid-column: 2;
+    margin-top: .9rem;
+    justify-self: start;
+  }
 
   /* --- Contact: stacked rows read better than a cramped grid --- */
   .contact__grid{
