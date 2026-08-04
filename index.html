@@ -84,16 +84,60 @@
 <meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
 <meta name="twitter:image:alt" content="مهیار مظفر — توسعه‌دهنده پایتون و هوش مصنوعی">
 
+<!-- Three linked nodes rather than one loose Person. The @id references are the
+     point: they tell Google that the person, the site and this page are the same
+     entity described three ways, instead of three unrelated facts. That is what
+     builds enough confidence to treat "مهیار مظفر" as a name it knows. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Mahyar Mozafar",
-  "alternateName": "مهیار مظفر",
-  "url": "https://mahyarmozafar.ir/",
-  "sameAs": [
-    "https://t.me/MahyarMozafar",
-    "https://instagram.com/mahy9r"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": ["Mahyar Mozafar", "مهیار مظفّر"],
+      "url": "https://mahyarmozafar.ir/",
+      "image": "https://mahyarmozafar.ir/assets/og-image.png",
+      "jobTitle": "توسعه‌دهنده پایتون و هوش مصنوعی",
+      "description": "توسعه‌دهنده پایتون و هوش مصنوعی. ساخت وب‌سایت شخصی و فروشگاهی، اسکریپت‌های اتوماسیون و کار با دیتابیس.",
+      "email": "mailto:applemahyar7@gmail.com",
+      "knowsLanguage": ["fa", "en"],
+      "knowsAbout": [
+        "Python",
+        "SQL",
+        "Git",
+        "هوش مصنوعی",
+        "اتوماسیون",
+        "طراحی وب‌سایت"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IR"
+      },
+      "sameAs": [
+        "https://t.me/MahyarMozafar",
+        "https://instagram.com/mahy9r",
+        "https://github.com/MahyarMozafar"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mahyarmozafar.ir/#website",
+      "url": "https://mahyarmozafar.ir/",
+      "name": "مهیار مظفر",
+      "inLanguage": "fa-IR",
+      "publisher": { "@id": "https://mahyarmozafar.ir/#person" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://mahyarmozafar.ir/#webpage",
+      "url": "https://mahyarmozafar.ir/",
+      "name": "مهیار مظفر (Mahyar Mozafar) — توسعه‌دهنده پایتون و هوش مصنوعی",
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/#website" },
+      "about": { "@id": "https://mahyarmozafar.ir/#person" },
+      "inLanguage": "fa-IR"
+    }
   ]
 }
 </script>
