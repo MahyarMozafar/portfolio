@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحه پیدا نشد — مهیار مظفر</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#050608">
+
+<!-- Every path is absolute. GitHub Pages serves this file for a miss at any
+     depth — /blog/something/deep/ included — and relative URLs would resolve
+     against that missing path instead of the site root. -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+  /* Deliberately self-contained: no scripts, no reveal gating, nothing that can
+     fail. A broken error page is the one thing worse than an error page. */
+  .oops{
+    min-height: 100vh;
+    display: grid;
+    /* Vertically centred, but starting at the inline edge like every other
+       section on the site — place-content:center would float it mid-page and
+       read as a different site. */
+    align-content: center;
+    justify-items: start;
+    gap: 1.6rem;
+    padding-inline: clamp(1.5rem, 7vw, 7rem);
+    position: relative;
+    z-index: 1;
+  }
+  .oops__code{
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    letter-spacing: .18em;
+    color: var(--faint);
+  }
+  .oops__title{
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .oops__text{
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 34ch;
+  }
+  .oops__home{
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    margin-top: .6rem;
+    padding: .85rem 1.4rem;
+    border: 1px solid var(--border);
+    font-size: .9rem;
+    color: var(--text);
+    transition: border-color .5s var(--ease), color .5s var(--ease);
+  }
+  .oops__home:hover{ border-color: var(--border-strong); }
+  .oops__home svg{ opacity: .6; }
+  .oops__mark{ width: 34px; height: auto; margin-bottom: .4rem; }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<main class="oops">
+  <img class="oops__mark" src="/assets/logo.svg" alt="" width="34" height="34">
+  <p class="oops__code" dir="ltr">404</p>
+  <h1 class="oops__title">این صفحه پیدا نشد</h1>
+  <p class="oops__text">
+    آدرسی که باز کردید وجود ندارد یا جابه‌جا شده. از صفحه اصلی می‌تونید بقیه بخش‌ها رو ببینید.
+  </p>
+  <a class="oops__home" href="/">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/>
+    </svg>
+    <span>بازگشت به صفحه اصلی</span>
+  </a>
+</main>
+
+</body>
+</html>
