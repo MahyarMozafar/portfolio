@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+  }, 3000);
+})();
+</script>
+
+<title>اتوماسیون چیست و چطور هزینه کسب‌وکار را کم می‌کند؟ | مهیار مظفر</title>
+<meta name="description" content="اتوماسیون یعنی کار تکراری را یک بار به کامپیوتر یاد بدهیم تا هر بار خودش انجامش دهد. با مثال واقعی از فاکتور، انبار و گزارش — و روشی ساده برای اینکه بفهمید صرفه دارد یا نه.">
+<meta name="author" content="مهیار مظفر">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/blog/automation-for-business/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="مهیار مظفر">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="اتوماسیون چیست و چطور هزینه کسب‌وکار را کم می‌کند؟">
+<meta property="og:description" content="اتوماسیون یعنی کار تکراری را یک بار به کامپیوتر یاد بدهیم تا هر بار خودش انجامش دهد. با مثال واقعی و روشی ساده برای سنجیدن صرفه‌اش.">
+<meta property="og:url" content="https://mahyarmozafar.ir/blog/automation-for-business/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-08-04">
+<meta property="article:author" content="مهیار مظفر">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="اتوماسیون چیست و چطور هزینه کسب‌وکار را کم می‌کند؟">
+<meta name="twitter:description" content="اتوماسیون یعنی کار تکراری را یک بار به کامپیوتر یاد بدهیم تا هر بار خودش انجامش دهد.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://mahyarmozafar.ir/blog/automation-for-business/#post",
+      "headline": "اتوماسیون چیست و چطور هزینه‌های کسب‌وکار را کم می‌کند؟",
+      "description": "اتوماسیون یعنی کار تکراری را یک بار به کامپیوتر یاد بدهیم تا هر بار خودش انجامش دهد. با مثال واقعی از فاکتور، انبار و گزارش.",
+      "inLanguage": "fa-IR",
+      "datePublished": "2026-08-04",
+      "dateModified": "2026-08-04",
+      "wordCount": 1064,
+      "image": "https://mahyarmozafar.ir/assets/og-image.png",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mahyarmozafar.ir/blog/automation-for-business/" },
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/blog/#blog" },
+      "author": { "@id": "https://mahyarmozafar.ir/#person" },
+      "publisher": { "@id": "https://mahyarmozafar.ir/#person" },
+      "keywords": ["اتوماسیون", "خودکارسازی کارهای تکراری", "کاهش هزینه کسب‌وکار", "پایتون"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": "Mahyar Mozafar",
+      "url": "https://mahyarmozafar.ir/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mahyarmozafar.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mahyarmozafar.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "اتوماسیون چیست؟", "item": "https://mahyarmozafar.ir/blog/automation-for-business/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="مهیار مظفر — رفتن به صفحه اصلی">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="/#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="/#skills"><span class="nav__num" aria-hidden="true">۰۲</span><span>تخصص‌ها</span></a>
+    <a href="/#projects"><span class="nav__num" aria-hidden="true">۰۳</span><span>پروژه‌ها</span></a>
+    <a href="/blog/" aria-current="page"><span class="nav__num" aria-hidden="true">۰۴</span><span>بلاگ</span></a>
+    <a href="/#contact"><span class="nav__num" aria-hidden="true">۰۵</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <article class="article">
+
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۱</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>اتوماسیون</span>
+    </p>
+
+    <h1 class="article__title" data-reveal>اتوماسیون چیست و چطور هزینه‌های کسب‌وکار را کم می‌کند؟</h1>
+
+    <p class="article__lead" data-reveal>
+      هر کسب‌وکاری یک سری کار داره که هر روز دقیقاً به یک شکل تکرار می‌شه. این کارها سخت نیستن — فقط وقت می‌گیرن. و وقت گرون‌ترین چیزیه که یک کسب‌وکار کوچک داره.
+    </p>
+
+    <p class="article__meta" data-reveal>
+      <time datetime="2026-08-04">۱۳ مرداد ۱۴۰۵</time>
+      <span class="dot" aria-hidden="true">·</span>
+      <span>۶ دقیقه مطالعه</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span>مهیار مظفر</span>
+    </p>
+
+    <div class="prose">
+
+      <h2>اتوماسیون دقیقاً یعنی چه؟</h2>
+
+      <p>
+        اتوماسیون یعنی کاری که تا الان یک نفر دستی انجام می‌داده، یک بار به کامپیوتر یاد داده بشه تا از اون به بعد خودش انجامش بده.
+      </p>
+
+      <p>
+        یک مثال ساده. فرض کنید هر روز صبح باید سفارش‌های دیشب رو از توی پیام‌ها بردارید و یکی‌یکی توی یک فایل اکسل بنویسید. اسم مشتری، شماره، آدرس، چیزی که خواسته. این کار بیست دقیقه طول می‌کشه و هیچ فکری هم نمی‌خواد — فقط باید انجام بشه. اتوماسیون یعنی یک برنامه کوچک این کار رو انجام بده و شما صبح فایل رو باز کنید و ببینید همه‌چیز نوشته شده.
+      </p>
+
+      <p>
+        یک نکته که خیلی‌ها اشتباه می‌کنن: <strong>اتوماسیون با هوش مصنوعی یکی نیست</strong>. بیشتر اتوماسیون‌های مفیدی که من می‌سازم برنامه‌های ساده‌ای هستن که فقط یک کار مشخص رو مرتب و بدون خستگی انجام می‌دن. نه چیز پیچیده‌ای لازم دارن، نه گرون هستن.
+      </p>
+
+      <h2>کجای کسب‌وکار بیشترین وقت رو می‌خوره؟</h2>
+
+      <p>
+        تقریباً همیشه همین چند تا. اگه دارید این‌ها رو دستی انجام می‌دید، احتمالاً جای خوبی برای شروع دارید:
+      </p>
+
+      <ul>
+        <li><strong>جمع کردن سفارش‌ها</strong> از پیام‌ها یا فرم‌ها و نوشتنشون توی یک فایل.</li>
+        <li><strong>ساختن فاکتور</strong> — پر کردن یک قالب ثابت با اطلاعاتی که همین الان یک جای دیگه دارید.</li>
+        <li><strong>به‌روز کردن لیست انبار</strong> بعد از هر فروش یا هر خرید.</li>
+        <li><strong>گزارش آخر ماه</strong> — همون کاری که هر ماه یک عصر ازتون می‌گیره تا چند تا عدد رو از چند تا فایل جمع بزنید.</li>
+        <li><strong>پیام دادن به مشتری</strong>؛ مثل «سفارشتون ارسال شد» که برای همه یک شکله و فقط اسم و کد رهگیریش فرق می‌کنه.</li>
+        <li><strong>مرتب کردن فایل‌ها و عکس‌ها</strong> — تغییر اسم، تغییر اندازه، جدا کردن توی پوشه‌ها.</li>
+      </ul>
+
+      <p>
+        وجه مشترک همه‌شون یک چیزه: <strong>قانونشون همیشه ثابته</strong>. هر بار دقیقاً همون تصمیم گرفته می‌شه، فقط اطلاعات عوض می‌شه. هر جا این الگو رو دیدید، اونجا قابل خودکار شدنه.
+      </p>
+
+      <h2>یک مثال واقعی، قدم به قدم</h2>
+
+      <p>
+        بگیم یک فروشگاه کوچک دارید. کار امروزتون این شکلیه: پیام‌ها رو باز می‌کنید، سفارش‌ها رو می‌خونید، توی اکسل می‌نویسید، برای هر کدوم یک فاکتور می‌سازید، از انبار کم می‌کنید، و آخرش به مشتری پیام می‌دید. شش قدم، برای هر سفارش.
+      </p>
+
+      <figure class="figure" data-reveal>
+        <svg viewBox="0 0 660 300" role="img" aria-labelledby="figA-title">
+          <title id="figA-title">مقایسه کار دستی با کار خودکار: شش قدم دستی در برابر یک قدم خودکار</title>
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M10 5L0 0v10z" fill="#4a5162"/>
+            </marker>
+            <marker id="arA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M10 5L0 0v10z" fill="#2f6fed"/>
+            </marker>
+          </defs>
+
+          <!-- flows right-to-left, the direction the page is read -->
+          <text x="648" y="26" direction="rtl" text-anchor="start" fill="#7d8698" font-size="14" font-family="Vazirmatn, sans-serif">الان — هر سفارش، شش بار کار دستی</text>
+
+          <g font-family="Vazirmatn, sans-serif" font-size="12" fill="#cdd2dd">
+            <rect x="536" y="44" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="592" y="71" text-anchor="middle">خواندن پیام</text>
+            <rect x="408" y="44" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="464" y="71" text-anchor="middle">نوشتن در اکسل</text>
+            <rect x="280" y="44" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="336" y="71" text-anchor="middle">ساختن فاکتور</text>
+            <rect x="152" y="44" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="208" y="71" text-anchor="middle">کم کردن انبار</text>
+            <rect x="24" y="44" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="80" y="71" text-anchor="middle">پیام به مشتری</text>
+          </g>
+          <g stroke="#4a5162" stroke-width="1" marker-end="url(#ar)">
+            <line x1="534" y1="66" x2="524" y2="66"/>
+            <line x1="406" y1="66" x2="396" y2="66"/>
+            <line x1="278" y1="66" x2="268" y2="66"/>
+            <line x1="150" y1="66" x2="140" y2="66"/>
+          </g>
+          <text x="648" y="112" direction="rtl" text-anchor="start" fill="#4a5162" font-size="11" font-family="Vazirmatn, sans-serif">هر بار از نو · هر بار قابل اشتباه</text>
+
+          <line x1="24" y1="146" x2="648" y2="146" stroke="#1c1c1e"/>
+
+          <text x="648" y="184" direction="rtl" text-anchor="start" fill="#7d8698" font-size="14" font-family="Vazirmatn, sans-serif">با اتوماسیون — یک بار ساخته می‌شود</text>
+
+          <g font-family="Vazirmatn, sans-serif" font-size="12">
+            <rect x="536" y="202" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="592" y="229" text-anchor="middle" fill="#cdd2dd">خواندن پیام</text>
+
+            <rect x="300" y="196" width="212" height="56" fill="rgba(47,111,237,.07)" stroke="#2f6fed"/>
+            <text x="406" y="221" text-anchor="middle" fill="#edeef2">یک برنامه کوچک</text>
+            <text x="406" y="239" text-anchor="middle" fill="#7d8698" font-size="11">اکسل + فاکتور + انبار + پیام</text>
+
+            <rect x="24" y="202" width="112" height="44" fill="none" stroke="#1c1c1e"/>
+            <text x="80" y="229" text-anchor="middle" fill="#cdd2dd">تمام شد</text>
+          </g>
+          <g stroke="#2f6fed" stroke-width="1" marker-end="url(#arA)">
+            <line x1="534" y1="224" x2="516" y2="224"/>
+            <line x1="298" y1="224" x2="140" y2="224"/>
+          </g>
+          <text x="648" y="274" direction="rtl" text-anchor="start" fill="#4a5162" font-size="11" font-family="Vazirmatn, sans-serif">شما فقط نتیجه را می‌بینید</text>
+        </svg>
+        <figcaption>
+          فرقش این نیست که کار سریع‌تر انجام می‌شه. فرقش اینه که دیگه شما انجامش نمی‌دید — و چیزی هم از قلم نمی‌افته.
+        </figcaption>
+      </figure>
+
+      <p>
+        بعد از اتوماسیون، این شش قدم می‌شه یکی: شما سفارش رو تأیید می‌کنید، بقیه‌اش خودکار انجام می‌شه. فایل اکسل به‌روز می‌شه، فاکتور ساخته می‌شه، از انبار کم می‌شه، پیام هم می‌ره.
+      </p>
+
+      <h2>چطور بفهمیم صرفه داره یا نه؟</h2>
+
+      <p>
+        اینجا هیچ عدد جادویی وجود نداره و به هر کسی که براتون درصد دقیق آورد شک کنید. ولی یک حساب ساده هست که خودتون می‌تونید انجام بدید:
+      </p>
+
+      <ol>
+        <li>یک هفته حواستون باشه که اون کار تکراری <strong>هر بار چقدر طول می‌کشه</strong> و <strong>هفته‌ای چند بار</strong> انجام می‌شه.</li>
+        <li>ضربشون کنید تا ساعت در هفته دربیاد. بعد ضربدر ۴ کنید تا ساعت در ماه بشه.</li>
+        <li>حالا اون ساعت‌ها رو با دستمزد ساعتی خودتون یا کارمندتون حساب کنید. این می‌شه هزینه ماهانه‌ای که همین الان دارید می‌دید.</li>
+        <li>اون رو با هزینه یک‌باره ساخت اتوماسیون مقایسه کنید.</li>
+      </ol>
+
+      <p>
+        نتیجه این حساب برای هر کسب‌وکاری فرق می‌کنه. برای بعضی کارها چند ماه طول می‌کشه تا برگرده، برای بعضی چند هفته، و برای بعضی هم اصلاً نمی‌ارزه. مهم اینه که با عدد خودتون تصمیم بگیرید، نه با حرف کسی که می‌خواد بهتون چیزی بفروشه.
+      </p>
+
+      <div class="callout" data-reveal>
+        <span class="callout__label">چیزی که معمولاً از قلم می‌افته</span>
+        صرفه‌جویی فقط وقت نیست. کار دستی تکراری اشتباه هم داره — یک صفر اضافه توی فاکتور، یک سفارش جا مونده، یک عددی که توی انبار به‌روز نشده. هزینه این اشتباه‌ها معمولاً از هزینه خود اون بیست دقیقه بیشتره، ولی چون توی صورتحساب نمی‌آد، کسی حسابش نمی‌کنه.
+      </div>
+
+      <h2>چه کارهایی ارزش اتوماسیون ندارن</h2>
+
+      <p>
+        این بخش رو صادقانه می‌نویسم، چون کسی که می‌خواد بهتون اتوماسیون بفروشه معمولاً نمی‌گه:
+      </p>
+
+      <ul>
+        <li><strong>کاری که ماهی یک بار انجام می‌شه و ده دقیقه طول می‌کشه.</strong> وقت ساختنش بیشتر از وقتیه که قراره ذخیره کنه.</li>
+        <li><strong>کاری که هر بار قانونش عوض می‌شه</strong> و واقعاً به قضاوت آدم نیاز داره. برنامه فقط کاری رو خوب انجام می‌ده که قابل توضیح دادن باشه.</li>
+        <li><strong>کاری که خودش هنوز درست تعریف نشده.</strong> اگه دو نفر توی مجموعه‌تون یک کار رو دو جور انجام می‌دن، اول باید سر روشش به توافق برسید. خودکار کردن یک کار به‌هم‌ریخته، فقط سریع‌تر به‌همش می‌ریزه.</li>
+      </ul>
+
+      <h2>یعنی باید کارمندم را کنار بگذارم؟</h2>
+
+      <p>
+        این سؤالیه که تقریباً همیشه پرسیده می‌شه، و جواب کوتاهش نه‌ست.
+      </p>
+
+      <p>
+        اتوماسیون کارهایی رو برمی‌داره که آدم توشون هیچ چیزی اضافه نمی‌کنه: کپی کردن یک عدد از یک جا به جای دیگه، پر کردن یک قالب ثابت، فرستادن یک پیام که متنش همیشه یکیه. کاری که آدم واقعاً توش خوبه چیز دیگه‌ایه — حرف زدن با مشتری‌ای که ناراضیه، تصمیم گرفتن درباره یک سفارش استثنایی، فهمیدن اینکه چرا فروش این ماه کم شده.
+      </p>
+
+      <p>
+        چیزی که معمولاً توی تیم‌های کوچک اتفاق می‌افته اینه که همون آدم می‌مونه، ولی وقتش می‌ره سمت کاری که به آدم نیاز داره. برای یک مجموعه سه‌چهار نفره این یعنی می‌تونید سفارش بیشتری بگیرید بدون اینکه کسی رو اضافه کنید — که معمولاً از کم کردن نیرو هم به‌صرفه‌تره.
+      </p>
+
+      <h2>وقتی اتوماسیون خراب شود چه می‌شود؟</h2>
+
+      <p>
+        این بخش هم معمولاً گفته نمی‌شه. هر برنامه‌ای ممکنه یک روز به مشکل بخوره: فرمت یک فایل عوض می‌شه، یک سرویس تغییر می‌کنه، یا اطلاعاتی می‌رسه که شکلش با همیشه فرق داره.
+      </p>
+
+      <p>
+        برای همین دو تا چیز از خود اتوماسیون مهم‌ترن. اول اینکه <strong>وقتی به مشکل خورد ساکت نمونه</strong> — باید بهتون خبر بده، نه اینکه بی‌سروصدا کار نکنه و شما یک هفته بعد بفهمید. دوم اینکه <strong>همیشه بشه همون کار رو دستی هم انجام داد</strong>. اتوماسیون خوب جای شما تصمیم نمی‌گیره و شما رو زمین‌گیر خودش نمی‌کنه؛ فقط کار دستی رو کم می‌کنه.
+      </p>
+
+      <h2>از کجا شروع کنیم؟</h2>
+
+      <p>
+        از کوچک‌ترین جا. آزاردهنده‌ترین کار تکراریتون رو انتخاب کنید — همونی که هر بار انجامش می‌دید و با خودتون می‌گید «این که کار آدم نیست». معمولاً همون بهترین گزینه‌ست: هم زیاد تکرار می‌شه، هم قانونش ساده‌ست.
+      </p>
+
+      <p>
+        لازم نیست کل کسب‌وکار رو یک‌جا خودکار کنید. یک کار رو بردارید، خودکارش کنید، یک ماه ازش استفاده کنید و ببینید واقعاً چقدر وقت آزاد کرد. بعد سراغ بعدی برید. این‌جوری هم ریسکش کمه، هم بعد از قدم اول خودتون دقیق‌تر می‌فهمید کجاها ارزشش رو داره.
+      </p>
+
+      <p>
+        یک کار مفید که همین امروز می‌تونید انجام بدید: یک هفته، هر بار که نشستید یک کار تکراری انجام دادید، اسمش و مدت زمانش رو یک جا بنویسید. آخر هفته این لیست خودش بهتون می‌گه از کجا باید شروع کنید — معمولاً نتیجه‌اش با چیزی که آدم حدس می‌زنه فرق داره.
+      </p>
+
+    </div>
+
+    <aside class="cta" data-reveal>
+      <p class="cta__title">فکر می‌کنید کاری توی کسب‌وکارتون قابل خودکار شدنه؟</p>
+      <p class="cta__text">
+        می‌تونید اول نمونه‌کارهام رو ببینید تا دقیق‌تر متوجه بشید چه کارهایی از این دست انجام می‌دم. بعدش اگه سؤالی داشتید یا خواستید درباره کار خودتون حرف بزنیم، در دسترسم.
+      </p>
+      <div class="cta__row">
+        <a class="btn" href="/#projects">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18"/>
+          </svg>
+          <span>دیدن نمونه‌کارها</span>
+        </a>
+        <a class="btn btn--accent" href="/#contact">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 7.5l9 6 9-6"/>
+          </svg>
+          <span>بیایید صحبت کنیم</span>
+        </a>
+      </div>
+    </aside>
+
+    <nav class="article__foot" aria-label="پیمایش نوشته‌ها">
+      <a href="/blog/">→ همه نوشته‌ها</a>
+      <a href="/blog/why-your-business-needs-a-website/">نوشته بعدی: چرا هر کسب‌وکاری به وب‌سایت نیاز دارد؟</a>
+    </nav>
+
+  </article>
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
