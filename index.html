@@ -93,7 +93,12 @@
 <!-- Three linked nodes rather than one loose Person. The @id references are the
      point: they tell Google that the person, the site and this page are the same
      entity described three ways, instead of three unrelated facts. That is what
-     builds enough confidence to treat "مهیار مظفر" as a name it knows. -->
+     builds enough confidence to treat "مهیار مظفر" as a name it knows.
+
+     ProfilePage.mainEntity is required, not optional — Search Console reported
+     "1 invalid item" for as long as this said `about` instead. It is spelled out
+     inline rather than left as a bare @id reference so the node is still valid
+     on its own to a parser that does not merge @graph nodes. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -141,8 +146,14 @@
       "url": "https://mahyarmozafar.ir/",
       "name": "مهیار مظفر (Mahyar Mozafar) — توسعه‌دهنده پایتون و هوش مصنوعی",
       "isPartOf": { "@id": "https://mahyarmozafar.ir/#website" },
-      "about": { "@id": "https://mahyarmozafar.ir/#person" },
-      "inLanguage": "fa-IR"
+      "dateCreated": "2026-07-29",
+      "dateModified": "2026-08-04",
+      "inLanguage": "fa-IR",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://mahyarmozafar.ir/#person",
+        "name": "مهیار مظفر"
+      }
     }
   ]
 }
