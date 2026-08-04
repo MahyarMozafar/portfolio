@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    var preload = document.getElementById('preload');
+    if (preload) preload.classList.add('is-done');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+    var hero = document.querySelectorAll(
+      '.hero__label, .hero__name, .hero__tagline, .hero__meta, .hero__scroll'
+    );
+    for (var i = 0; i < hero.length; i++) {
+      hero[i].style.opacity = '';
+      hero[i].style.transform = '';
+    }
+  }, 3000);
+})();
+</script>
+
+<title>Mahyar Mozafar — Python &amp; AI Developer</title>
+<meta name="description" content="Mahyar Mozafar (مهیار مظفر) is a Python and AI developer. I build personal and e-commerce websites, automation scripts, and work with databases and SQL. Available for new projects.">
+<meta name="author" content="Mahyar Mozafar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/en/">
+
+<!-- hreflang has to be reciprocal — each page must list both itself and the
+     other, or Google ignores the pairing entirely. x-default points at the
+     Persian page, which is the primary one. -->
+<link rel="alternate" hreflang="fa-IR" href="https://mahyarmozafar.ir/">
+<link rel="alternate" hreflang="en" href="https://mahyarmozafar.ir/en/">
+<link rel="alternate" hreflang="x-default" href="https://mahyarmozafar.ir/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mahyar Mozafar">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:title" content="Mahyar Mozafar — Python &amp; AI Developer">
+<meta property="og:description" content="Python and AI developer. I build websites, automation scripts, and work with databases and SQL.">
+<meta property="og:url" content="https://mahyarmozafar.ir/en/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mahyar Mozafar — Python and AI developer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mahyar Mozafar — Python &amp; AI Developer">
+<meta name="twitter:description" content="Python and AI developer. I build websites, automation scripts, and work with databases and SQL.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "Mahyar Mozafar",
+      "alternateName": "مهیار مظفر",
+      "url": "https://mahyarmozafar.ir/",
+      "image": "https://mahyarmozafar.ir/assets/og-image.png",
+      "jobTitle": "Python and AI Developer",
+      "description": "Python and AI developer. I build personal and e-commerce websites, automation scripts, and work with databases and SQL.",
+      "email": "mailto:applemahyar7@gmail.com",
+      "knowsLanguage": ["fa", "en"],
+      "knowsAbout": ["Python", "SQL", "Git", "Artificial Intelligence", "Automation", "Web Development"],
+      "address": { "@type": "PostalAddress", "addressCountry": "IR" },
+      "sameAs": [
+        "https://t.me/MahyarMozafar",
+        "https://instagram.com/mahy9r",
+        "https://github.com/MahyarMozafar"
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://mahyarmozafar.ir/en/#webpage",
+      "url": "https://mahyarmozafar.ir/en/",
+      "name": "Mahyar Mozafar — Python & AI Developer",
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/#website" },
+      "about": { "@id": "https://mahyarmozafar.ir/#person" },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="glassLens" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red"/>
+      <feOffset in="red" dx="-3" dy="0" result="redOffset"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue"/>
+      <feOffset in="blue" dx="3" dy="0" result="blueOffset"/>
+      <feBlend in="redOffset" in2="green" mode="screen" result="rg"/>
+      <feBlend in="rg" in2="blueOffset" mode="screen"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="preload" id="preload" aria-hidden="true">
+  <img class="preload__mark" src="/assets/logo.svg" alt="" width="112" height="112">
+  <span class="preload__rule"></span>
+</div>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__brand" aria-label="Mahyar Mozafar — back to top">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+
+  <nav class="nav__links" id="navMenu" aria-label="Main navigation">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="#about"><span class="nav__num" aria-hidden="true">01</span><span>About</span></a>
+    <a href="#skills"><span class="nav__num" aria-hidden="true">02</span><span>Skills</span></a>
+    <a href="#contact"><span class="nav__num" aria-hidden="true">03</span><span>Contact</span></a>
+    <a href="/" hreflang="fa-IR"><span class="nav__num" aria-hidden="true">فا</span><span>فارسی</span></a>
+    <span class="nav__note" aria-hidden="true">Available for work</span>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <p class="hero__label">
+        <span class="rule" aria-hidden="true"></span>
+        Python · AI · Web
+      </p>
+
+      <h1 class="hero__name"><span class="hero__lens-wrap"><span>Mahyar Mozafar</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy">Mahyar Mozafar</span></span></h1>
+
+      <p class="hero__tagline">
+        Python &amp; <span class="accent">AI</span> developer
+      </p>
+    </div>
+
+    <div class="hero__meta">
+      <p>Python · Websites · AI</p>
+      <p class="muted">Available for work</p>
+    </div>
+
+    <a href="#about" class="hero__scroll" aria-label="Scroll down">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+      <span>Scroll</span>
+    </a>
+  </section>
+
+  <section class="bio" id="about">
+    <div class="bio__decor" aria-hidden="true">
+      <svg viewBox="0 0 300 300" width="300" height="300">
+        <path d="M20 260 C 80 260, 60 160, 140 160 S 220 60, 280 60" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <h2 class="eyebrow" data-reveal>
+      <span class="eyebrow__num">01</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>About</span>
+    </h2>
+
+    <p class="bio__text" data-reveal>
+      Mahyar Mozafar — Python and AI developer. I build personal and e-commerce websites, and simple automation scripts with Python. If you have a project in mind, I'd be glad to work on it with you.
+    </p>
+  </section>
+
+  <section class="skills" id="skills">
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">02</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>Skills</span>
+    </p>
+
+    <h2 class="section-heading" data-reveal>What I can help with</h2>
+
+    <div class="skills__grid">
+      <article class="skill-card" data-reveal>
+        <span class="skill-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M9 7l-5 5 5 5"/><path d="M15 7l5 5-5 5"/>
+          </svg>
+        </span>
+        <span class="skill-card__title">Python</span>
+        <p class="skill-card__desc">Writing programs and solving problems with Python.</p>
+      </article>
+
+      <article class="skill-card" data-reveal>
+        <span class="skill-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <ellipse cx="12" cy="6" rx="7" ry="3"/>
+            <path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/>
+            <path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/>
+          </svg>
+        </span>
+        <span class="skill-card__title">Databases &amp; SQL</span>
+        <p class="skill-card__desc">Working with databases and writing SQL queries.</p>
+      </article>
+
+      <article class="skill-card" data-reveal>
+        <span class="skill-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="6" y1="3" x2="6" y2="15"/>
+            <circle cx="18" cy="6" r="3"/>
+            <circle cx="6" cy="18" r="3"/>
+            <path d="M18 9a9 9 0 0 1-9 9"/>
+          </svg>
+        </span>
+        <span class="skill-card__title">Git &amp; teamwork</span>
+        <p class="skill-card__desc">Using Git for version control and working on code together.</p>
+      </article>
+
+      <article class="skill-card" data-reveal>
+        <span class="skill-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="5" y="5" width="14" height="14" rx="2"/>
+            <path d="M9 5V2M15 5V2M9 22v-3M15 22v-3M19 9h3M19 15h3M2 9h3M2 15h3"/>
+          </svg>
+        </span>
+        <span class="skill-card__title">Automation &amp; AI</span>
+        <p class="skill-card__desc">Writing automation scripts and working with AI tools.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">03</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>Contact</span>
+    </p>
+
+    <h2 class="section-heading" data-reveal>Let's get in touch</h2>
+
+    <ul class="contact__grid" data-reveal>
+      <li class="contact__cell">
+        <a class="contact__btn" href="mailto:applemahyar7@gmail.com" aria-label="Email Mahyar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 7.5l9 6 9-6"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">Email</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">applemahyar7@gmail.com</span>
+            <button class="contact__copy" type="button" data-copy="applemahyar7@gmail.com" aria-label="Copy email">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+      <li class="contact__cell">
+        <a class="contact__btn" href="https://t.me/MahyarMozafar" target="_blank" rel="noopener" aria-label="Mahyar on Telegram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M21 4 3 11l6 2m12-9-4 17-8-6m12-11L9 13"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">Telegram</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">@MahyarMozafar</span>
+            <button class="contact__copy" type="button" data-copy="@MahyarMozafar" aria-label="Copy Telegram handle">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+      <li class="contact__cell">
+        <a class="contact__btn" href="https://instagram.com/mahy9r" target="_blank" rel="noopener" aria-label="Mahyar on Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <span class="contact__body">
+          <span class="contact__label">Instagram</span>
+          <span class="contact__value-row">
+            <span class="contact__value" dir="ltr">@mahy9r</span>
+            <button class="contact__copy" type="button" data-copy="@mahy9r" aria-label="Copy Instagram handle">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V4a1 1 0 0 1 1-1h11"/>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </li>
+
+    </ul>
+
+    <footer class="footer">
+      <img src="/assets/logo.svg" alt="" width="20" height="20">
+      <span>© Mahyar Mozafar</span>
+      <span aria-hidden="true">·</span>
+      <a href="/" hreflang="fa-IR">فارسی</a>
+    </footer>
+  </section>
+
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

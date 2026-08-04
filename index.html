@@ -58,6 +58,12 @@
 <meta name="theme-color" content="#050608">
 <link rel="canonical" href="https://mahyarmozafar.ir/">
 
+<!-- Must be reciprocal — both pages list both, or Google drops the pairing.
+     x-default is this page: Persian is the primary version. -->
+<link rel="alternate" hreflang="fa-IR" href="https://mahyarmozafar.ir/">
+<link rel="alternate" hreflang="en" href="https://mahyarmozafar.ir/en/">
+<link rel="alternate" hreflang="x-default" href="https://mahyarmozafar.ir/">
+
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -429,9 +435,14 @@
 
     </ul>
 
+    <!-- The EN link is here rather than in the menu on purpose: an unlinked page
+         is an orphan and ranks badly, but the English version is a side door,
+         not a fifth section. -->
     <footer class="footer">
       <img src="assets/logo.svg" alt="" width="20" height="20">
       <span>© مهیار مظفر</span>
+      <span aria-hidden="true">·</span>
+      <a href="/en/" hreflang="en">EN</a>
     </footer>
   </section>
 
