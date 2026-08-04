@@ -561,8 +561,13 @@ main{ position: relative; z-index: 1; }
   font-size: .8rem;
 }
 
-/* ---------- Scroll reveals (GSAP toggles .is-visible) ---------- */
-[data-reveal]{
+/* ---------- Scroll reveals (IntersectionObserver toggles .is-visible) ----------
+   Hidden *only* once the inline <head> script has confirmed JS is running and
+   put .js-reveal on <html>. So the text is readable by default and JavaScript
+   opts into hiding it, rather than being required to un-hide it. Backwards, the
+   page rendered as a black screen for anyone whose JS did not finish — which is
+   exactly what Google's renderer captured. */
+.js-reveal [data-reveal]{
   opacity: 0;
   transform: translateY(14px);
 }
@@ -576,7 +581,9 @@ main{ position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce){
   .blob{ animation: none; }
   .hero__scroll-line::after{ animation: none; }
-  [data-reveal]{ opacity: 1; transform: none; }
+  /* Must carry the same two-part specificity as the .js-reveal rule above, or
+     it loses to it and the page stays blank for anyone with motion turned off. */
+  .js-reveal [data-reveal]{ opacity: 1; transform: none; }
   [data-reveal].is-visible{ transition: none; }
 }
 

@@ -1,4 +1,11 @@
-gsap.registerPlugin(ScrollTrigger);
+/* The CDN scripts are the one part of this page we do not control: a slow
+   network or a blocked host, and they are simply not here. Nothing below may
+   throw when that happens, because the page's *text* must never depend on a
+   third-party file loading. Google's renderer screenshotted this page as a
+   black screen once — `gsap.registerPlugin` threw on line 1 and took every
+   reveal down with it. That is what these two flags exist to prevent. */
+const hasGsap = typeof gsap !== 'undefined';
+const hasLenis = typeof Lenis !== 'undefined';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover: none)').matches;
@@ -8,14 +15,13 @@ const isTouch = window.matchMedia('(hover: none)').matches;
    (syncTouch is off by default), so on a phone it is a permanent rAF loop
    costing frames for no visual gain — while native momentum scrolling is
    already smooth and runs off the main thread. */
-const useSmoothScroll = !isTouch && !prefersReducedMotion;
+const useSmoothScroll = hasGsap && hasLenis && !isTouch && !prefersReducedMotion;
 
 let lenis = null;
 if (useSmoothScroll) {
   lenis = new Lenis({ duration: 1.1 });
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
-  lenis.on('scroll', ScrollTrigger.update);
 }
 
 /* One interface over both modes, so nothing below has to care which is live. */
@@ -82,8 +88,10 @@ function setMenu(open) {
   if (open && navClose) navClose.focus();
   else if (wasOpen && !open && navToggle) navToggle.focus();
 
-  /* Rows arrive one after another once the panel has slid in. */
-  if (open && menuRows.length && !prefersReducedMotion) {
+  /* Rows arrive one after another once the panel has slid in. Without GSAP they
+     simply appear with the panel — the CSS gives them no hidden start state, so
+     skipping this costs the animation and nothing else. */
+  if (open && menuRows.length && !prefersReducedMotion && hasGsap) {
     gsap.fromTo(
       menuRows,
       { opacity: 0, y: 22 },
@@ -120,13 +128,20 @@ onScroll((y) => {
   });
 });
 
-/* ---------- Hero load-in (held until the preloader lifts) ---------- */
-const heroIntro = gsap.timeline({ paused: true, defaults: { duration: 1.4, ease: 'expo.out' } })
-  .from('.hero__label', { opacity: 0, y: 16 }, 0.15)
-  .from('.hero__name', { opacity: 0, y: 20 }, 0.3)
-  .from('.hero__tagline', { opacity: 0, y: 16 }, 0.45)
-  .from('.hero__meta', { opacity: 0, y: 12 }, 0.7)
-  .from('.hero__scroll', { opacity: 0, y: 12 }, 0.8);
+/* ---------- Hero load-in (held until the preloader lifts) ----------
+   fromTo, not from: `from` reads the current state as the end state, so a
+   half-applied timeline can strand an element at opacity 0 with nothing left
+   to restore it. Spelling out both ends means the resting state is always
+   written down. Note this still blanks the hero the instant the timeline is
+   built — it is paused — so it only ever runs when GSAP is actually here. */
+const heroIntro = hasGsap
+  ? gsap.timeline({ paused: true, defaults: { duration: 1.4, ease: 'expo.out' } })
+      .fromTo('.hero__label', { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 0.15)
+      .fromTo('.hero__name', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0.3)
+      .fromTo('.hero__tagline', { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 0.45)
+      .fromTo('.hero__meta', { opacity: 0, y: 12 }, { opacity: 1, y: 0 }, 0.7)
+      .fromTo('.hero__scroll', { opacity: 0, y: 12 }, { opacity: 1, y: 0 }, 0.8)
+  : null;
 
 /* ---------- Preloader ----------
    Plays on every load, as an intentional brand moment. It still only *waits*
@@ -140,7 +155,7 @@ function revealSite() {
   revealed = true;
   if (preload) preload.classList.add('is-done');
   lockScroll(false);
-  heroIntro.play();
+  if (heroIntro) heroIntro.play();
 }
 
 const MIN_SHOW = prefersReducedMotion ? 0 : 650;  // long enough to actually see the mark
@@ -184,15 +199,50 @@ if (isFinePointer && lensWrap && lensCopy && !prefersReducedMotion) {
   });
 }
 
-/* ---------- Scroll reveals ---------- */
-document.querySelectorAll('[data-reveal]').forEach((el) => {
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 88%',
-    onEnter: () => el.classList.add('is-visible'),
-    once: true,
-  });
-});
+/* ---------- Scroll reveals ----------
+   IntersectionObserver rather than ScrollTrigger. It ships with the browser, so
+   the page's text can no longer be held hostage by a CDN file — which is the
+   whole reason Google saw a blank page. rootMargin -12% is the same trigger
+   point ScrollTrigger's `top 88%` gave us, and Lenis scrolls the window for
+   real (no transform trickery), so the observer stays in step with it. */
+const revealEls = document.querySelectorAll('[data-reveal]');
+
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);   // reveal once, then stop watching
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+
+  revealEls.forEach((el) => revealObserver.observe(el));
+} else {
+  revealEls.forEach((el) => el.classList.add('is-visible'));
+}
+
+/* ---------- No-scroll fallback ----------
+   A crawler renders the page and never scrolls. The hero is 100vh, so it fills
+   whatever viewport the crawler uses — even Googlebot's very tall one — and
+   every section below it stays off screen forever. No scroll-driven reveal can
+   fire, and the page is captured as a black screen. That is what Search Console
+   showed us.
+
+   So: if nobody has moved down the page by the time this fires, there is nobody
+   here to animate for — just show the text. Anyone who is actually reading has
+   scrolled long before four seconds, and sees the reveals exactly as designed.
+
+   Position, not a scroll event: releasing the preloader's scroll lock fires a
+   scroll event on its own, and that would cancel the fallback with the visitor
+   still sitting at the top. */
+setTimeout(() => {
+  if (window.scrollY > 40) return;
+  revealEls.forEach((el) => el.classList.add('is-visible'));
+}, 4000);
+
+/* Tells the inline <head> rescue this file made it to the end intact. If it is
+   never set, that script un-hides the page at 3s. */
+window.__revealLive = true;
 
 /* ---------- Copy-to-clipboard ---------- */
 document.querySelectorAll('.contact__copy').forEach((btn) => {
