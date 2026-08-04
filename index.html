@@ -73,9 +73,11 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts are served from this domain now (see the @font-face block at the top
+     of style.css), so there is nothing to preconnect to. The Persian file is
+     preloaded because every visible word on the page needs it — without this the
+     browser only discovers it after parsing the stylesheet. -->
+<link rel="preload" href="assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -359,10 +361,13 @@
 
 </main>
 
-<!-- ScrollTrigger is gone: the reveals run on IntersectionObserver now, which
-     costs nothing and cannot fail to arrive. -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<!-- Served from this domain rather than a CDN. Browsers partition their HTTP
+     cache per site now, so a shared CDN copy is never reused across sites and
+     buys nothing — while a blocked or slow jsdelivr used to take the page down
+     with it. ScrollTrigger is gone entirely: the reveals run on
+     IntersectionObserver, which ships with the browser. -->
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/lenis.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
