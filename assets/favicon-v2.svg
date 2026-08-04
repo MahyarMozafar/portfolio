@@ -3,7 +3,12 @@
      a Google result, where a white mark on a white background came out as an
      empty circle. The panel is what makes it readable on any surface, so this
      file and logo.svg are deliberately not the same — do not merge them.
-     The mark is scaled down from logo.svg to clear the rounded corners. -->
+     The mark is scaled down from logo.svg to clear the rounded corners.
+
+     The -v2 in the filename is deliberate. Google's favicon cache is keyed by
+     the icon's URL, and it had already fetched and stored the old invisible
+     mark from /assets/favicon.svg. A URL it has never seen has nothing to serve
+     from cache, so it has to fetch this one fresh. Do not rename it back. -->
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مهیار مظفر">
   <rect width="48" height="48" rx="11" fill="#0B0E14"/>
   <g fill="none" stroke="#EDEEF2" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">

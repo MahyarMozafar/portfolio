@@ -66,8 +66,19 @@
 
 <!-- Root-absolute, like every other page. Google reads the favicon off the home
      page specifically, so this is the one declaration that decides what shows
-     next to the site in a search result. -->
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+     next to the site in a search result.
+
+     Both the SVG and the PNG live at URLs Google has never fetched. Its favicon
+     cache is keyed by URL, and the old /assets/favicon.svg is already stored
+     there as the invisible white-on-transparent mark — pointing at a new URL is
+     what forces a fresh fetch instead of a cache hit.
+
+     The 96px PNG is not a duplicate. Google asks for something larger than
+     48x48 and picks whichever declaration suits it best, so this covers the
+     case where it would rather not rasterise an SVG. Browsers still take the
+     SVG: it is listed first and it stays sharp at any size. -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-v2.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
