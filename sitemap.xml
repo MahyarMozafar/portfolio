@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://mahyarmozafar.ir/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="https://mahyarmozafar.ir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahyarmozafar.ir/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mahyarmozafar.ir/"/>
   </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/en/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="https://mahyarmozafar.ir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahyarmozafar.ir/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mahyarmozafar.ir/"/>
+  </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/blog/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/blog/automation-for-business/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/blog/why-your-business-needs-a-website/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/blog/instagram-vs-website/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mahyarmozafar.ir/blog/website-cost/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
