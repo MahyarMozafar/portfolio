@@ -221,23 +221,44 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach((el) => el.classList.add('is-visible'));
 }
 
-/* ---------- No-scroll fallback ----------
-   A crawler renders the page and never scrolls. The hero is 100vh, so it fills
-   whatever viewport the crawler uses — even Googlebot's very tall one — and
-   every section below it stays off screen forever. No scroll-driven reveal can
-   fire, and the page is captured as a black screen. That is what Search Console
-   showed us.
+/* ---------- Making sure a crawler sees words ----------
+   showEverything() is the resting state of this page with all the choreography
+   already finished. Nothing here is a visual change — it is the same end state
+   the animations arrive at, just written down directly.
 
-   So: if nobody has moved down the page by the time this fires, there is nobody
-   here to animate for — just show the text. Anyone who is actually reading has
-   scrolled long before four seconds, and sees the reveals exactly as designed.
+   heroIntro.progress(1) is the important line. GSAP renders through
+   requestAnimationFrame, and the timeline was built paused, which already wrote
+   opacity:0 onto every hero line. If no frame ever runs, that is permanent.
+   progress(1) writes the timeline's end values synchronously, so it does not
+   need a tick to undo them. play() cannot do this — it only asks for a frame
+   that may never come. */
+function showEverything() {
+  revealSite();                                 // lift the preloader, free the scroll
+  if (heroIntro) heroIntro.progress(1);         // hero, without waiting on a frame
+  revealEls.forEach((el) => el.classList.add('is-visible'));
+}
+
+/* Googlebot stretches its viewport to something like 12,000px tall so the whole
+   page counts as on screen at once. No real display is remotely that tall, so
+   this is a safe tell — and there is nobody behind it to watch an intro. This
+   is why Search Console kept screenshotting a black page: the hero is 100svh,
+   so at that height the hero *is* the whole screenshot, and its text was still
+   sitting at opacity 0 waiting for a frame that never came. */
+if (window.innerHeight > 4000) {
+  showEverything();
+}
+
+/* And the ordinary no-scroll case, for any renderer that uses a normal viewport.
+   If nobody has moved down the page by the time this fires, there is nobody here
+   to animate for. A real reader has scrolled long before four seconds and sees
+   every reveal exactly as designed.
 
    Position, not a scroll event: releasing the preloader's scroll lock fires a
    scroll event on its own, and that would cancel the fallback with the visitor
    still sitting at the top. */
 setTimeout(() => {
   if (window.scrollY > 40) return;
-  revealEls.forEach((el) => el.classList.add('is-visible'));
+  showEverything();
 }, 4000);
 
 /* Tells the inline <head> rescue this file made it to the end intact. If it is
