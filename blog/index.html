@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Same reveal gate and rescue as the homepage: text readable by default,
+     JavaScript opts into hiding it, and nothing stays invisible if main.js
+     never finishes. -->
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+  }, 3000);
+})();
+</script>
+
+<title>بلاگ — مهیار مظفر</title>
+<meta name="description" content="نوشته‌هایی درباره اتوماسیون، وب‌سایت برای کسب‌وکار و کم کردن هزینه کارهای تکراری. ساده و بدون اصطلاح فنی، برای صاحبان کسب‌وکار.">
+<meta name="author" content="مهیار مظفر">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/blog/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="مهیار مظفر">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="بلاگ — مهیار مظفر">
+<meta property="og:description" content="نوشته‌هایی درباره اتوماسیون، وب‌سایت برای کسب‌وکار و کم کردن هزینه کارهای تکراری.">
+<meta property="og:url" content="https://mahyarmozafar.ir/blog/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="بلاگ — مهیار مظفر">
+<meta name="twitter:description" content="نوشته‌هایی درباره اتوماسیون، وب‌سایت برای کسب‌وکار و کم کردن هزینه کارهای تکراری.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Blog",
+      "@id": "https://mahyarmozafar.ir/blog/#blog",
+      "url": "https://mahyarmozafar.ir/blog/",
+      "name": "بلاگ مهیار مظفر",
+      "description": "نوشته‌هایی درباره اتوماسیون، وب‌سایت برای کسب‌وکار و کم کردن هزینه کارهای تکراری.",
+      "inLanguage": "fa-IR",
+      "author": { "@id": "https://mahyarmozafar.ir/#person" },
+      "publisher": { "@id": "https://mahyarmozafar.ir/#person" },
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/#website" },
+      "blogPost": [
+        { "@type": "BlogPosting", "@id": "https://mahyarmozafar.ir/blog/automation-for-business/#post" },
+        { "@type": "BlogPosting", "@id": "https://mahyarmozafar.ir/blog/why-your-business-needs-a-website/#post" },
+        { "@type": "BlogPosting", "@id": "https://mahyarmozafar.ir/blog/instagram-vs-website/#post" },
+        { "@type": "BlogPosting", "@id": "https://mahyarmozafar.ir/blog/website-cost/#post" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": "Mahyar Mozafar",
+      "url": "https://mahyarmozafar.ir/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mahyarmozafar.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mahyarmozafar.ir/blog/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="مهیار مظفر — رفتن به صفحه اصلی">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="/#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="/#skills"><span class="nav__num" aria-hidden="true">۰۲</span><span>تخصص‌ها</span></a>
+    <a href="/#projects"><span class="nav__num" aria-hidden="true">۰۳</span><span>پروژه‌ها</span></a>
+    <a href="/blog/" aria-current="page"><span class="nav__num" aria-hidden="true">۰۴</span><span>بلاگ</span></a>
+    <a href="/#contact"><span class="nav__num" aria-hidden="true">۰۵</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۴</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>بلاگ</span>
+    </p>
+    <h1 class="page-head__title" data-reveal>نوشته‌ها</h1>
+    <p class="page-head__sub" data-reveal>
+      درباره اتوماسیون، وب‌سایت و کم کردن هزینه‌های کسب‌وکار. ساده نوشته می‌شن — بدون اصطلاح فنی و بدون شعار.
+    </p>
+  </div>
+
+  <div class="post-list">
+
+    <article class="post-row" data-reveal>
+      <span class="post-row__num" aria-hidden="true">۰۱</span>
+      <div>
+        <h2 class="post-row__title">
+          <a href="/blog/automation-for-business/">اتوماسیون چیست و چطور هزینه‌های کسب‌وکار را کم می‌کند؟</a>
+          <svg class="post-row__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6"/>
+          </svg>
+        </h2>
+        <p class="post-row__desc">
+          کارهای تکراری هر ماه چند ساعت از وقت شما و کارمندهاتون رو می‌گیرن. اتوماسیون یعنی همون کارها رو یک بار به کامپیوتر یاد بدیم. با مثال‌های واقعی از فاکتور، انبار و گزارش.
+        </p>
+        <p class="post-row__meta">
+          <time datetime="2026-08-04">۱۳ مرداد ۱۴۰۵</time>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>۷ دقیقه مطالعه</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="post-row" data-reveal>
+      <span class="post-row__num" aria-hidden="true">۰۲</span>
+      <div>
+        <h2 class="post-row__title">
+          <a href="/blog/why-your-business-needs-a-website/">چرا هر کسب‌وکاری به وب‌سایت نیاز دارد؟</a>
+          <svg class="post-row__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6"/>
+          </svg>
+        </h2>
+        <p class="post-row__desc">
+          سایت فقط یک بروشور اینترنتی نیست. جایی‌ست که گوگل پیداتون می‌کنه، شب و روز کار می‌کنه، و برخلاف هر شبکه اجتماعی، مال خودتونه.
+        </p>
+        <p class="post-row__meta">
+          <time datetime="2026-08-04">۱۳ مرداد ۱۴۰۵</time>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>۷ دقیقه مطالعه</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="post-row" data-reveal>
+      <span class="post-row__num" aria-hidden="true">۰۳</span>
+      <div>
+        <h2 class="post-row__title">
+          <a href="/blog/instagram-vs-website/">فقط اینستاگرام کافی است؟ مقایسه صادقانه سایت و اینستاگرام</a>
+          <svg class="post-row__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6"/>
+          </svg>
+        </h2>
+        <p class="post-row__desc">
+          خیلی از کسب‌وکارهای ایرانی فقط روی اینستاگرام هستن. اینستاگرام کارهایی رو خوب انجام می‌ده که سایت نمی‌تونه — و برعکس. اینجا هر دو رو بدون طرفداری مقایسه می‌کنیم.
+        </p>
+        <p class="post-row__meta">
+          <time datetime="2026-08-04">۱۳ مرداد ۱۴۰۵</time>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>۷ دقیقه مطالعه</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="post-row" data-reveal>
+      <span class="post-row__num" aria-hidden="true">۰۴</span>
+      <div>
+        <h2 class="post-row__title">
+          <a href="/blog/website-cost/">هزینه طراحی سایت چقدر است؟ چه چیزهایی قیمت را تعیین می‌کنند</a>
+          <svg class="post-row__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6"/>
+          </svg>
+        </h2>
+        <p class="post-row__desc">
+          جواب واقعی «بستگی داره» است — ولی به چیزهای مشخصی بستگی داره. این نوشته اون چیزها رو باز می‌کنه تا بتونید یک قیمت رو درست بسنجید.
+        </p>
+        <p class="post-row__meta">
+          <time datetime="2026-08-04">۱۳ مرداد ۱۴۰۵</time>
+          <span class="dot" aria-hidden="true">·</span>
+          <span>۷ دقیقه مطالعه</span>
+        </p>
+      </div>
+    </article>
+
+  </div>
+
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

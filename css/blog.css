@@ -1,0 +1,342 @@
+/* ---------- Blog ----------
+   Loaded only by pages under /blog/, so the homepage carries none of its weight.
+   Everything here is built from the tokens in style.css — same background, same
+   hairlines, same numbering — so a post reads as part of the site rather than a
+   section bolted onto it. */
+
+/* Matches the .bio/.skills/.projects/.contact rule in style.css. */
+.wrap{
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 7vw, 7rem);
+}
+
+/* Clear the fixed nav. Sections on the homepage sit under a full-height hero,
+   so they never needed this. */
+.page-head{ padding-block: clamp(7rem, 16vh, 11rem) clamp(3rem, 7vh, 4.5rem); }
+.page-head__title{
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0;
+}
+.page-head__sub{
+  margin-top: 1.1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 46ch;
+}
+
+/* ---------- Index: the post list ----------
+   Rows, not cards. A card grid would strand an orphan whenever the post count is
+   odd, and a list of writing wants to be read down the page anyway. */
+.post-list{
+  padding-bottom: clamp(5rem, 11vh, 8rem);
+  border-top: 1px solid var(--hairline);
+}
+.post-row{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: start;
+  padding-block: 2.4rem;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .6s var(--ease);
+}
+@media (hover: hover){
+  .post-row:hover{ background: rgba(255,255,255,.02); }
+  .post-row:hover .post-row__title{ color: var(--text); }
+  .post-row:hover .post-row__arrow{ opacity: 1; transform: translateX(-4px); }
+}
+.post-row__num{
+  font-variant-numeric: tabular-nums;
+  font-size: .8rem;
+  color: var(--faint);
+  padding-top: .45rem;
+}
+.post-row__title{
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+}
+.post-row__arrow{
+  flex: none;
+  opacity: 0;
+  color: var(--accent);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.post-row__desc{
+  margin-top: .7rem;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.8;
+  max-width: 58ch;
+}
+.post-row__meta{
+  margin-top: .9rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .78rem;
+  color: var(--faint);
+}
+.post-row__meta .dot{ opacity: .5; }
+
+/* ---------- Article ---------- */
+.article{ padding-block: clamp(7rem, 16vh, 11rem) 0; }
+
+.article__title{
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-weight: 300;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 22ch;
+}
+.article__lead{
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.85;
+  color: #c3c8d4;
+  max-width: 42ch;
+}
+.article__meta{
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  font-size: .78rem;
+  color: var(--faint);
+}
+.article__meta time{ font-variant-numeric: tabular-nums; }
+
+/* ---------- Prose ----------
+   A narrow measure on purpose. Persian at a comfortable size runs long, and a
+   68rem line is genuinely hard to track back to the start of. */
+.prose{
+  max-width: 40rem;
+  padding-bottom: clamp(3rem, 7vh, 5rem);
+  font-size: 1.02rem;
+  line-height: 2;
+  color: #cdd2dd;
+}
+.prose > * + *{ margin-top: 1.35rem; }
+
+.prose h2{
+  margin-top: 3.4rem;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text);
+}
+.prose h3{
+  margin-top: 2.4rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+.prose strong{ font-weight: 400; color: var(--text); }
+.prose a{
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-soft);
+  transition: border-color .4s var(--ease);
+}
+.prose a:hover{ border-bottom-color: var(--accent); }
+
+.prose ul, .prose ol{
+  padding-inline-start: 1.4rem;
+  list-style: none;
+}
+.prose ol{ counter-reset: step; }
+.prose li + li{ margin-top: .7rem; }
+.prose li{ position: relative; }
+.prose ul > li::before{
+  content: "";
+  position: absolute;
+  inset-inline-start: -1.4rem;
+  top: .85em;
+  width: 5px; height: 5px;
+  background: var(--accent);
+  opacity: .55;
+}
+.prose ol > li{ counter-increment: step; }
+.prose ol > li::before{
+  content: counter(step);
+  position: absolute;
+  inset-inline-start: -1.6rem;
+  top: 0;
+  font-size: .78rem;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Latin text and code are left-to-right even inside an RTL page. Getting this
+   wrong is the single most common flaw on Persian technical sites. */
+.prose code{
+  font-family: var(--font-mono);
+  font-size: .82em;
+  direction: ltr;
+  unicode-bidi: isolate;
+  padding: .15em .45em;
+  background: rgba(255,255,255,.045);
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+.prose pre{
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+  padding: 1.4rem 1.5rem;
+  background: rgba(255,255,255,.025);
+  box-shadow: 0 0 0 1px var(--hairline);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+.prose pre code{
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose blockquote{
+  padding-inline-start: 1.4rem;
+  border-inline-start: 2px solid var(--accent-soft);
+  color: var(--muted);
+}
+
+/* A boxed aside for the one point in a post worth stopping on. */
+.callout{
+  padding: 1.6rem 1.8rem;
+  box-shadow: 0 0 0 1px var(--hairline);
+  background: rgba(47,111,237,.05);
+  font-size: .96rem;
+  line-height: 1.9;
+}
+.callout__label{
+  display: block;
+  margin-bottom: .5rem;
+  font-size: .74rem;
+  letter-spacing: .04em;
+  color: var(--accent);
+}
+
+/* ---------- Figures (the hand-drawn SVG diagrams) ---------- */
+.figure{
+  margin-top: 2.6rem;
+  padding: 1.9rem 1.6rem 1.4rem;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+.figure svg{ width: 100%; height: auto; display: block; }
+.figure figcaption{
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+  font-size: .8rem;
+  color: var(--faint);
+  line-height: 1.75;
+}
+
+/* ---------- Comparison table ---------- */
+.cmp{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+.cmp th, .cmp td{
+  padding: .95rem 1rem;
+  text-align: start;
+  vertical-align: top;
+  box-shadow: 0 0 0 1px var(--hairline);
+  line-height: 1.7;
+}
+.cmp th{
+  font-weight: 400;
+  color: var(--text);
+  background: rgba(255,255,255,.025);
+}
+.cmp td{ color: var(--muted); }
+.cmp tbody th{ color: var(--muted); background: none; font-size: .88rem; }
+.table-scroll{ overflow-x: auto; }
+
+/* ---------- Call to action ----------
+   Projects first, then contact: someone who has just read why they need this
+   work wants to see it done before they want a conversation. */
+.cta{
+  margin-top: 4rem;
+  padding: 2.4rem 2.2rem;
+  box-shadow: 0 0 0 1px var(--border);
+  background: rgba(255,255,255,.02);
+}
+.cta__title{
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+.cta__text{
+  margin-top: .9rem;
+  color: var(--muted);
+  font-size: .96rem;
+  line-height: 1.9;
+}
+.cta__row{
+  margin-top: 1.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+}
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .85rem 1.4rem;
+  font-size: .9rem;
+  box-shadow: 0 0 0 1px var(--border);
+  color: var(--text);
+  transition: box-shadow .5s var(--ease), background .5s var(--ease);
+}
+.btn:hover{ box-shadow: 0 0 0 1px var(--border-strong); }
+.btn--accent{
+  background: var(--accent);
+  box-shadow: none;
+  color: #fff;
+}
+.btn--accent:hover{ background: #2a63d4; box-shadow: none; }
+.btn svg{ opacity: .7; }
+
+/* ---------- Footer nav ---------- */
+.article__foot{
+  margin-top: 3.5rem;
+  padding-block: 2.2rem clamp(4rem, 9vh, 6rem);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: .88rem;
+  color: var(--muted);
+}
+.article__foot a{ transition: color .5s var(--ease); }
+.article__foot a:hover{ color: var(--text); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px){
+  .post-row{
+    grid-template-columns: 1fr;
+    row-gap: .5rem;
+    padding-block: 2rem;
+  }
+  .post-row__num{ padding-top: 0; }
+  .prose{ font-size: .98rem; line-height: 1.95; }
+  .figure{ padding: 1.3rem 1rem 1rem; }
+  .cta{ padding: 1.9rem 1.5rem; }
+  .btn{ flex: 1 1 auto; justify-content: center; }
+}

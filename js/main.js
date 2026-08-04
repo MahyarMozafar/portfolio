@@ -134,7 +134,7 @@ onScroll((y) => {
    to restore it. Spelling out both ends means the resting state is always
    written down. Note this still blanks the hero the instant the timeline is
    built — it is paused — so it only ever runs when GSAP is actually here. */
-const heroIntro = hasGsap
+const heroIntro = hasGsap && document.querySelector('.hero__name')
   ? gsap.timeline({ paused: true, defaults: { duration: 1.4, ease: 'expo.out' } })
       .fromTo('.hero__label', { opacity: 0, y: 16 }, { opacity: 1, y: 0 }, 0.15)
       .fromTo('.hero__name', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0.3)
