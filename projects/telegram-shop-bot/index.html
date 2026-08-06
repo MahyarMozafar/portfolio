@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+  }, 3000);
+})();
+</script>
+
+<title>ربات فروشگاهی تلگرام با پنل فروشنده | مهیار مظفر</title>
+<meta name="description" content="نمونه‌کار اتوماسیون: ربات تلگرام که به سؤال قیمت و موجودی مشتری‌ها جواب می‌دهد، حتی با غلط املایی — بدون هوش مصنوعی پولی. پایتون، SQLite و Flask.">
+<meta name="author" content="مهیار مظفر">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/projects/telegram-shop-bot/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-v2.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="مهیار مظفر">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="ربات فروشگاهی تلگرام با پنل فروشنده">
+<meta property="og:description" content="به سؤال مشتری‌ها جواب می‌دهد، حتی وقتی اسم محصول را اشتباه می‌نویسند — بدون هوش مصنوعی پولی.">
+<meta property="og:url" content="https://mahyarmozafar.ir/projects/telegram-shop-bot/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ربات فروشگاهی تلگرام با پنل فروشنده">
+<meta name="twitter:description" content="به سؤال مشتری‌ها جواب می‌دهد، حتی وقتی اسم محصول را اشتباه می‌نویسند — بدون هوش مصنوعی پولی.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://mahyarmozafar.ir/projects/telegram-shop-bot/#project",
+      "name": "ربات فروشگاهی تلگرام با پنل فروشنده",
+      "description": "ربات تلگرام برای پاسخ خودکار به سؤال مشتری‌های فروشگاه، با تشخیص غلط املایی فارسی و پنل فروشنده.",
+      "inLanguage": "fa-IR",
+      "dateCreated": "2026-08-06",
+      "dateModified": "2026-08-06",
+      "image": "https://mahyarmozafar.ir/assets/og-image.png",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mahyarmozafar.ir/projects/telegram-shop-bot/" },
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/projects/#collection" },
+      "author": { "@id": "https://mahyarmozafar.ir/#person" },
+      "creator": { "@id": "https://mahyarmozafar.ir/#person" },
+      "keywords": ["ربات تلگرام فروشگاهی", "اتوماسیون تلگرام", "ربات پاسخگوی خودکار", "اتوماسیون کسب‌وکار"],
+      "about": ["Python", "SQLite", "Flask"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": "Mahyar Mozafar",
+      "url": "https://mahyarmozafar.ir/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mahyarmozafar.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "پروژه‌ها", "item": "https://mahyarmozafar.ir/projects/" },
+        { "@type": "ListItem", "position": 3, "name": "ربات فروشگاهی تلگرام با پنل فروشنده", "item": "https://mahyarmozafar.ir/projects/telegram-shop-bot/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/blog.css">
+<link rel="stylesheet" href="/css/chat.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="مهیار مظفر — رفتن به صفحه اصلی">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="/#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="/#skills"><span class="nav__num" aria-hidden="true">۰۲</span><span>تخصص‌ها</span></a>
+    <a href="/projects/" aria-current="page"><span class="nav__num" aria-hidden="true">۰۳</span><span>پروژه‌ها</span></a>
+    <a href="/blog/"><span class="nav__num" aria-hidden="true">۰۴</span><span>بلاگ</span></a>
+    <a href="/#contact"><span class="nav__num" aria-hidden="true">۰۵</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <article class="article">
+
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num">۰۳</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>اتوماسیون</span>
+    </p>
+
+    <h1 class="article__title" data-reveal>ربات فروشگاهی تلگرام با پنل فروشنده</h1>
+
+    <p class="article__lead" data-reveal>رباتی که به سؤال مشتری‌ها جواب می‌دهد — قیمت، موجودی، سایز و رنگ — حتی وقتی اسم محصول را اشتباه می‌نویسند. بدون هوش مصنوعی پولی و بدون هزینه‌ی ماهانه.</p>
+
+    <p class="project-meta" data-reveal><span>Python</span><span>SQLite</span><span>Flask</span><span>difflib</span></p>
+
+    <div class="cta__row" style="justify-content:flex-start;margin-top:1.8rem" data-reveal>
+      <a class="btn btn--accent" href="https://kitchenware.mahyarmozafar.ir/panel/" target="_blank" rel="noopener">دیدن دمو</a>
+      <a class="btn" href="https://github.com/MahyarMozafar/telegram-shop-bot" target="_blank" rel="noopener">کد در گیت‌هاب</a>
+    </div>
+
+    <div class="prose">
+
+      <h2>مشکل چه بود؟</h2>
+      <p>
+        صاحب یک فروشگاه کوچک، روزی ده‌ها بار به یک سؤال جواب می‌دهد:
+        «سبد رخت چند؟»، «آبکش موجوده؟»، «چه رنگایی دارین؟»، «چطور سفارش بدم؟»
+      </p>
+      <p>
+        نصف این پیام‌ها ساعت دو نیمه‌شب می‌رسند. اگر تا صبح جواب ندهد،
+        مشتری از جای دیگری می‌خرد.
+      </p>
+
+      <h2>چی ساختم؟</h2>
+      <p>
+        یک ربات تلگرام که به این سؤال‌ها جواب می‌دهد، به‌علاوه‌ی یک پنل که به صاحب
+        فروشگاه نشان می‌دهد مردم بیشتر دنبال چه چیزی هستند.
+      </p>
+      <p>
+        محصولات هم <strong>با چت کردن</strong> اضافه می‌شوند — بدون پنل مدیریت،
+        بدون فرم، بدون اپلیکیشن دوم.
+      </p>
+
+      <h2>چطور کار می‌کند؟</h2>
+
+      <div class="chat" data-reveal>
+        <div class="chat__bar">
+          <span class="chat__avatar">پ</span>
+          <span>
+            <span class="chat__who">ربات فروشگاه</span><br>
+            <span class="chat__status">آنلاین · معمولاً فوری جواب می‌دهد</span>
+          </span>
+        </div>
+        <div class="chat__log">
+          <div class="msg msg--me">ابکش چند؟</div>
+          <div class="msg msg--bot"><b>آبکش بزرگ</b>
+<span class="price">۹۵٬۰۰۰ تومان</span>
+موجودی: ۱۲ عدد
+سایز: ۲۸ سانتی‌متر</div>
+          <div class="msg msg--me">سبت رخت هم دارین؟</div>
+          <div class="msg msg--bot">منظورتون کدوم بود؟
+            <span class="msg__keys">
+              <span class="msg__key" data-tapped>سبد رخت</span>
+              <span class="msg__key">سبد خرید</span>
+            </span></div>
+          <div class="msg msg--bot"><b>سبد رخت</b>
+<span class="price">۱۸۵٬۰۰۰ تومان</span>
+تنها ۴ عدد مانده</div>
+          <div class="msg msg--me">قابلمه دارید؟</div>
+          <div class="msg msg--bot">متأسفم، این محصول را پیدا نکردم. 🤔</div>
+          <div class="typing" hidden><i></i><i></i><i></i></div>
+        </div>
+        <button class="chat__replay" type="button">پخش دوباره ↺</button>
+      </div>
+
+      <p>
+        این خروجی واقعی ربات است، نه یک نمایش ساختگی.
+      </p>
+
+      <h2>چطور «باهوش» است، بدون هوش مصنوعی؟</h2>
+      <p>
+        قرار بود ربات غلط املایی را بفهمد. هر مدل هوش مصنوعی آنلاین
+        <strong>بابت هر پیام پول می‌گیرد</strong>، و قرار این پروژه این بود که
+        هیچ هزینه‌ای نداشته باشد. پس به‌جای آن، چهار لایه‌ی ساده روی هم گذاشتم.
+      </p>
+
+      <h3>۱. یکسان‌سازی متن فارسی</h3>
+      <p>بیشترین کار را همین لایه انجام می‌دهد. یک کلمه به ده شکل تایپ می‌شود:</p>
+      <div class="table-scroll">
+      <table class="cmp">
+        <thead><tr><th>مشتری می‌نویسد</th><th>چرا فرق دارد</th></tr></thead>
+        <tbody>
+          <tr><th>آبکش</th><td>درست</td></tr>
+          <tr><th>آبكش</th><td>کاف عربی</td></tr>
+          <tr><th>ابکش</th><td>بدون مد</td></tr>
+          <tr><th>آب‌کش</th><td>با نیم‌فاصله</td></tr>
+          <tr><th>آبکـش</th><td>با کشیدگی</td></tr>
+          <tr><th>آبَکِش</th><td>با اعراب</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>هر شش‌تا به <strong>یک رشته‌ی واحد</strong> تبدیل می‌شوند.</p>
+
+      <h3>۲. تشخیص موضوع سؤال</h3>
+      <p>
+        قیمت؟ موجودی؟ مشخصات؟ نحوه‌ی سفارش؟ ساعت کاری؟ ربات فقط همان چیزی را
+        جواب می‌دهد که پرسیده شده — نه کل پرونده‌ی محصول.
+      </p>
+
+      <h3>۳. حذف کلمات سؤالی</h3>
+      <p>
+        «قیمت سبد رخت چنده» → فقط «سبد رخت» می‌ماند.
+        ولی <strong>ارقام و واحدها حذف نمی‌شوند</strong>: «۱۲ لیتری» تنها چیزی است که
+        «سطل زباله پدالی ۱۲ لیتری» را از «سطل زباله آشپزخانه ۲۰ لیتری» جدا می‌کند.
+        این یکی را از روی داده‌ی واقعی فهمیدم — اول ارقام را حذف می‌کردم و ربات
+        مجبور بود هر بار بپرسد کدام سطل.
+      </p>
+
+      <h3>۴. پیدا کردن محصول</h3>
+      <p>
+        دقیق → مترادف → داخل جمله → و در آخر <code>difflib</code> برای غلط املایی.
+        <code>difflib</code> داخل خود پایتون است؛ نه نصبی می‌خواهد، نه هزینه‌ای.
+      </p>
+
+      <div class="callout" data-reveal>
+        <span class="callout__label">مهم‌ترین قانون</span>
+        <p>
+          وقتی مطمئن نیست، <strong>حدس نمی‌زند</strong>. دکمه نشان می‌دهد و می‌پرسد.
+          و اگر محصولی را نداشته باشد، صادقانه می‌گوید ندارم — هیچ‌وقت قیمت از خودش
+          درنمی‌آورد. برای یک فروشگاه، جوابِ اشتباهِ با اطمینان از «نمی‌دانم» بدتر است.
+        </p>
+      </div>
+
+      <h2>پنل فروشنده</h2>
+      <p>
+        هر پیامی که به ربات می‌رسد در دیتابیس ثبت می‌شود — چه ربات فهمیده باشد، چه نه.
+        پنل از روی همین‌ها نشان می‌دهد:
+      </p>
+      <ul>
+        <li>پیام امروز، کل پیام‌ها، محصولات، کم‌موجودی و ناموجود</li>
+        <li><strong>بیشترین سؤال‌ها</strong> — مردم دنبال چه چیزی هستند</li>
+        <li><strong>سؤال‌هایی که ربات نفهمید</strong> — مفیدترین جدول پنل</li>
+        <li>آخرین پیام‌ها، با چیزی که ربات از هرکدام فهمیده</li>
+      </ul>
+      <p>
+        آن جدول دوم مهم‌ترین است: فهرست محصول‌هایی که مشتری‌ها می‌خواهند و فروشگاه
+        ندارد. یعنی لیست کارهای بعدی صاحب فروشگاه، که خودش هیچ‌وقت جمعش نمی‌کرد.
+      </p>
+
+      <h3>یک تابع، دو خروجی</h3>
+      <p>
+        پنل زنده (روی کامپیوتر صاحب فروشگاه) و نسخه‌ی ثابتی که روی سایت منتشر می‌شود،
+        هر دو از <strong>یک تابع</strong> می‌آیند. پس هیچ‌وقت با هم فرق نمی‌کنند.
+      </p>
+      <p>
+        آن تابع عمداً هیچ وابستگی‌ای ندارد — نه Flask، نه Jinja — تا نسخه‌ی ثابت
+        روی کامپیوتری که هیچ‌چیز نصب ندارد هم ساخته شود.
+        <a href="https://kitchenware.mahyarmozafar.ir/panel/" target="_blank" rel="noopener">پنل را اینجا ببینید ←</a>
+      </p>
+
+      <h2>تست، بدون توکن ربات</h2>
+      <p>
+        همه‌ی منطق در دو فایل است که هیچ‌کدام چیزی درباره‌ی تلگرام نمی‌دانند.
+        پوشه‌ی <code>handlers/</code> فقط سیم‌کشی است. نتیجه‌اش این است که
+        <strong>۳۶ تست</strong> بدون هیچ توکنی اجرا می‌شوند.
+      </p>
+      <p>همین تست‌ها چهار باگ واقعی را پیدا کردند:</p>
+      <ol>
+        <li>مترادف‌های چندکلمه‌ای («سطل آشغال») هیچ‌وقت پیدا نمی‌شدند</li>
+        <li>«سلام» به تنهایی با «سطل» جور می‌شد و جواب محصول می‌گرفت</li>
+        <li>ارقام و واحدها حذف می‌شدند و دو سطل مختلف یکی می‌شدند</li>
+        <li>«چطور سفارش بدم؟» با لیست سبدها جواب داده می‌شد — «بدم» به «سبد» شبیه بود</li>
+      </ol>
+
+      <h2>با چه ابزارهایی</h2>
+      <p>
+        پایتون، SQLite (داخل خود پایتون)، <code>difflib</code> (داخل خود پایتون)،
+        <code>python-telegram-bot</code> و Flask برای پنل زنده.
+        همه‌ی SQL در یک فایل است و هیچ فایل دیگری کوئری نمی‌زند.
+      </p>
+
+      <h2>نتیجه</h2>
+      <p>
+        رباتی که ساعت دو نیمه‌شب جواب می‌دهد، غلط املایی را می‌فهمد، وقتی مطمئن نیست
+        می‌پرسد، و وقتی نمی‌داند می‌گوید نمی‌دانم — بدون یک ریال هزینه‌ی ماهانه.
+      </p>
+
+    </div>
+
+    <div class="cta" data-reveal>
+      <p class="cta__title">پروژه‌ای دارید؟</p>
+      <p class="cta__text">اگر کاری شبیه این لازم دارید، خوشحال می‌شم دربارش حرف بزنیم.</p>
+      <div class="cta__row">
+        <a class="btn btn--accent" href="/#contact">تماس با من</a>
+        </div>
+    </div>
+
+    <nav class="article__foot" aria-label="پیمایش پروژه‌ها">
+      <a href="/projects/">→ همه پروژه‌ها</a>
+      <a href="/projects/sandblast-website/">پروژه بعدی: سایت شرکت سندبلاست</a>
+    </nav>
+
+  </article>
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/chat.js"></script>
+</body>
+</html>

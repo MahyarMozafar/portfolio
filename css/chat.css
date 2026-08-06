@@ -1,0 +1,123 @@
+/* ============================================================================
+   Self-playing Telegram chat
+   ----------------------------------------------------------------------------
+   This replaces the GIF the plan originally called for. Recording a real GIF
+   needs a bot token from BotFather — which only the account owner can create —
+   and somebody at the keyboard to press record. Neither is available while
+   building, and both would block the whole project on a manual step.
+
+   Written as markup instead: ~8 KB against a ~2 MB GIF, sharp at any zoom and
+   in any colour scheme, selectable text, and readable by a screen reader. The
+   real GIF can still be recorded later; this does not go away when it is.
+   ========================================================================= */
+
+.chat{
+  background:#17212B;                 /* Telegram's own dark chat colour, on   */
+  border-radius:20px;                 /* purpose: the whole point is that this */
+  padding:1rem;                       /* is instantly recognisable as Telegram */
+  max-width:24rem;
+  margin-inline:auto;
+  box-shadow:var(--shadow-lg,0 16px 40px rgba(0,0,0,.14));
+  font-size:.88rem;
+  line-height:1.75;
+}
+
+.chat__bar{
+  display:flex; align-items:center; gap:.65rem;
+  padding-bottom:.85rem; margin-bottom:.85rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#fff;
+}
+.chat__avatar{
+  width:34px; height:34px; border-radius:50%;
+  background:#C4633A;
+  display:grid; place-items:center;
+  font-size:.9rem; font-weight:600; color:#fff;
+  flex:none;
+}
+.chat__who{ font-weight:600; font-size:.88rem; }
+.chat__status{ font-size:.72rem; color:#6C7883; }
+
+.chat__log{
+  display:flex; flex-direction:column; gap:.5rem;
+  min-height:19rem;                   /* reserved, so nothing jumps as lines
+                                         arrive — layout shift on a section
+                                         somebody is reading is unforgivable */
+  justify-content:flex-end;
+}
+
+.msg{
+  max-width:85%;
+  padding:.5rem .8rem;
+  border-radius:14px;
+  white-space:pre-line;               /* the bot's replies are multi-line */
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.msg.is-in{ opacity:1; transform:none; }
+
+.msg--bot{
+  align-self:flex-start;
+  background:#1F2C3A;
+  color:#E7EDF3;
+  border-end-start-radius:5px;
+}
+.msg--me{
+  align-self:flex-end;
+  background:#2B5278;
+  color:#fff;
+  border-end-end-radius:5px;
+}
+.msg b{ color:#fff; font-weight:600; }
+.msg .price{ color:#F0A868; font-weight:600; }
+
+/* Inline keyboard — what the bot shows instead of guessing between two
+   products whose names are one letter apart. */
+.msg__keys{ display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.6rem; }
+.msg__key{
+  background:rgba(255,255,255,.09);
+  color:#8FC0E8;
+  border-radius:9px;
+  padding:.3rem .7rem;
+  font-size:.8rem;
+}
+.msg__key.is-tapped{ background:#2B5278; color:#fff; }
+
+/* Three dots. Animated with transform only. */
+.typing{
+  align-self:flex-start;
+  background:#1F2C3A;
+  border-radius:14px; border-end-start-radius:5px;
+  padding:.7rem .9rem;
+  display:flex; gap:4px;
+}
+.typing[hidden]{ display:none; }
+.typing i{
+  width:6px; height:6px; border-radius:50%;
+  background:#6C7883;
+  animation:dot 1.3s infinite;
+}
+.typing i:nth-child(2){ animation-delay:.18s; }
+.typing i:nth-child(3){ animation-delay:.36s; }
+@keyframes dot{
+  0%,60%,100%{ transform:translateY(0);   opacity:.45; }
+  30%        { transform:translateY(-4px); opacity:1;   }
+}
+
+.chat__replay{
+  display:block; margin:.9rem auto 0;
+  color:#6C7883; font-size:.78rem;
+  padding:.4rem .9rem; min-height:36px;
+  border-radius:100px;
+  transition:color .3s ease, background .3s ease;
+}
+.chat__replay:hover{ color:#fff; background:rgba(255,255,255,.07); }
+
+/* Motion off: every line is already there, nothing types itself, no dots. */
+@media (prefers-reduced-motion:reduce){
+  .msg{ opacity:1; transform:none; }
+  .typing{ display:none !important; }
+  .chat__replay{ display:none; }
+  .typing i{ animation:none; }
+}

@@ -458,26 +458,71 @@ main{ position: relative; z-index: 1; }
    behind the gaps: a container background also fills any *empty* cell in an
    incomplete row, which showed up as a grey block. Neighbouring shadows meet
    inside the 1px gap and read as a single shared line. */
+/* Was built for a placeholder: an icon and one word, centred. Now each card
+   carries a title, a sentence and a tag row, so it is start-aligned like
+   .skill-card — a running sentence reads better anchored to the reading edge
+   than floated in the middle. The card is an <a>, so the whole block is the
+   target rather than a link buried inside it. */
 .project-card{
   /* transparent, not a solid fill — a fill would punch an opaque block out of
      the page-wide glow, which is what made the cards read as a second shade */
   background: transparent;
   box-shadow: 0 0 0 1px var(--hairline);
-  padding: 3.5rem 1.5rem;
+  padding: 2.75rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  color: var(--faint);
-  font-size: .9rem;
-  transition: background .6s var(--ease), color .6s var(--ease);
+  align-items: flex-start;
+  gap: .9rem;
+  transition: background .6s var(--ease);
 }
 /* A faint tint rather than a different background colour. :hover sticks after
    a tap on touch screens, and a solid second shade left a grey block behind. */
 @media (hover: hover){
-  .project-card:hover{ background: rgba(255,255,255,.02); color: var(--muted); }
+  .project-card:hover{ background: rgba(255,255,255,.02); }
+  .project-card:hover .project-card__icon{ color: var(--muted); }
+  .project-card:hover .project-card__go svg{ transform: translateX(-4px); }
 }
-.project-card__icon{ display: inline-flex; }
+.project-card__icon{
+  display: inline-flex;
+  color: var(--faint);
+  transition: color .6s var(--ease);
+}
+.project-card__title{
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.5;
+}
+.project-card__desc{
+  font-size: .9rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+/* Pushed to the bottom so the tag rows line up across all three cards even
+   when the descriptions run to different lengths. */
+.project-card__tags{
+  margin-top: auto;
+  padding-top: .4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.project-card__tags span{
+  font-size: .72rem;
+  line-height: 1.9;
+  color: var(--muted);
+  padding: 0 .6rem;
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+}
+.project-card__go{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .82rem;
+  color: var(--faint);
+}
+.project-card__go svg{ transition: transform .5s var(--ease); }
 
 /* ---------- Skills ---------- */
 .skills{ padding-block: clamp(5rem, 11vh, 8rem); }

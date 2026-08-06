@@ -327,6 +327,25 @@
 .article__foot a{ transition: color .5s var(--ease); }
 .article__foot a:hover{ color: var(--text); }
 
+/* ---------- Project pages ----------
+   The only addition the case studies needed. Everything else they use —
+   .article, .prose, .callout, .cmp, .cta, .btn, .post-list — was already here
+   for the blog, which is why these pages cost the stylesheet almost nothing. */
+.project-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.6rem;
+}
+.project-meta span{
+  font-size: .74rem;
+  line-height: 2;
+  color: var(--muted);
+  padding: 0 .7rem;
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 720px){
   .post-row{
