@@ -443,13 +443,14 @@ main{ position: relative; z-index: 1; }
 
 /* ---------- Projects ---------- */
 .projects{ padding-block: clamp(5rem, 11vh, 8rem); }
-/* Fixed at three columns rather than auto-fit: auto-fit will happily drop to
-   two, which leaves three cards sitting 2-over-1 and looking lopsided. Three
-   across, or one per row below the breakpoint — never two. */
+/* Fixed columns rather than auto-fit, so a row is never left part-empty and
+   lopsided. Four cards go two-by-two — the same shape .skills__grid uses for
+   its four. Below the breakpoint they stack one per row. Revisit the count
+   here whenever a project is added or removed. */
 .projects__grid{
   margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
 }
 /* Hairline grid, not rounded boxes — solid rules read considered,

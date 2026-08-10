@@ -243,6 +243,33 @@
   line-height: 1.75;
 }
 
+/* ---------- Demo video (a phone screen recording) ---------- */
+/* The clip is a tall portrait recording. Left at full width it would tower
+   over the page, so it is capped to roughly phone size and centred. */
+.demo{
+  margin-top: 2.6rem;
+  padding: 1.9rem 1.6rem 1.4rem;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+.demo video{
+  display: block;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 14px;
+  background: #000;
+}
+.demo figcaption{
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+  font-size: .8rem;
+  color: var(--faint);
+  line-height: 1.75;
+  text-align: center;
+}
+
 /* ---------- Comparison table ---------- */
 .cmp{
   width: 100%;
@@ -356,6 +383,8 @@
   .post-row__num{ padding-top: 0; }
   .prose{ font-size: .98rem; line-height: 1.95; }
   .figure{ padding: 1.3rem 1rem 1rem; }
+  .demo{ padding: 1.3rem 1rem 1rem; }
+  .demo video{ max-width: 240px; }
   .cta{ padding: 1.9rem 1.5rem; }
   .btn{ flex: 1 1 auto; justify-content: center; }
 }
