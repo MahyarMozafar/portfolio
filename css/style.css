@@ -45,9 +45,17 @@
   --bg: #050608;
   --text: #edeef2;
   --muted: #7d8698;
+  /* Decoration only — section numbers, card icons, list bullets. At 2.6:1
+     against --bg it is below the 4.5:1 WCAG AA floor, so nothing a visitor
+     has to *read* may use it. Real content (the email address, a card's
+     call-to-action, dates, captions, the footer) uses --muted, which clears
+     the floor at 5.5:1. Adding a colour here would blur that line; the two
+     greys are the whole system. */
   --faint: #4a5162;
-  --accent: #2f6fed;
-  --accent-soft: rgba(47,111,237,.30);
+  /* #2f6fed measured 4.46:1 — a hair under AA for the body-size links in
+     .prose. This is the same blue two steps lighter, at 4.9:1. */
+  --accent: #3c78f0;
+  --accent-soft: rgba(60,120,240,.30);
   --border: rgba(255,255,255,.09);
   --border-strong: rgba(255,255,255,.20);
   /* Solid twin of --border over --bg. Used where two hairlines meet in the
@@ -307,7 +315,7 @@ main{ position: relative; z-index: 1; }
   width: 42vw; height: 42vw;
   bottom: -12%;
   inset-inline-start: 0;
-  background: radial-gradient(circle, rgba(47,111,237,.16) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(60,120,240,.16) 0%, transparent 70%);
   animation: drift-b 32s ease-in-out infinite alternate;
 }
 @keyframes drift-a{
@@ -357,6 +365,10 @@ main{ position: relative; z-index: 1; }
   opacity: 0;
   transition: opacity .4s var(--ease);
 }
+/* The element is empty in the markup on purpose. Written out as real text, the
+   name was counted twice and the h1 read as it run together with itself.
+   Generated content is not part of an element's text. */
+.hero__lens-copy::before{ content: attr(data-text); }
 .hero__lens-copy.is-active{ opacity: 1; }
 
 .hero__tagline{
@@ -516,12 +528,14 @@ main{ position: relative; z-index: 1; }
   border: 1px solid var(--hairline);
   border-radius: 100px;
 }
+/* --muted, not --faint: this is the card's call to action, the one line
+   telling a visitor the whole card is clickable. It has to be legible. */
 .project-card__go{
   display: inline-flex;
   align-items: center;
   gap: .45rem;
   font-size: .82rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 .project-card__go svg{ transition: transform .5s var(--ease); }
 
@@ -623,7 +637,7 @@ main{ position: relative; z-index: 1; }
 .writing__tag{
   font-size: .74rem;
   letter-spacing: .02em;
-  color: var(--faint);
+  color: var(--muted);
   white-space: nowrap;
   padding: .3rem .7rem;
   box-shadow: 0 0 0 1px var(--hairline);
@@ -633,8 +647,10 @@ main{ position: relative; z-index: 1; }
 @media (hover: hover){
   .writing__row:hover{ background: rgba(255,255,255,.02); }
   .writing__row:hover .writing__num{ color: var(--muted); }
+  /* --text, not --muted: the tag now rests at --muted, so lifting it to
+     --muted on hover would have left the hover doing nothing. */
   .writing__row:hover .writing__tag{
-    color: var(--muted);
+    color: var(--text);
     box-shadow: 0 0 0 1px var(--border);
   }
 }
@@ -692,12 +708,15 @@ main{ position: relative; z-index: 1; }
   transform: translateY(-3px);
 }
 .contact__label{ font-size: .85rem; }
+/* The email address and the handles live in here. This is the single most
+   important text on the page — it is how somebody hires him — and at --faint
+   it sat at 2.6:1, unreadable on a phone in daylight. */
 .contact__value-row{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: .35rem;
-  color: var(--faint);
+  color: var(--muted);
   min-width: 0;
 }
 .contact__value{
@@ -726,7 +745,7 @@ main{ position: relative; z-index: 1; }
   display: flex;
   align-items: center;
   gap: .6rem;
-  color: var(--faint);
+  color: var(--muted);
   font-size: .8rem;
 }
 
@@ -843,7 +862,7 @@ main{ position: relative; z-index: 1; }
     width: 95vw;
     height: 95vw;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(47,111,237,.30) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(60,120,240,.30) 0%, transparent 70%);
     filter: blur(65px);
     pointer-events: none;
   }
@@ -862,8 +881,8 @@ main{ position: relative; z-index: 1; }
     top: -8%;
     inset-inline-end: -30%;
     background: radial-gradient(circle,
-      rgba(47,111,237,.30) 0%,
-      rgba(47,111,237,.13) 38%,
+      rgba(60,120,240,.30) 0%,
+      rgba(60,120,240,.13) 38%,
       transparent 68%);
     animation: drift-flat 26s ease-in-out infinite alternate;
   }

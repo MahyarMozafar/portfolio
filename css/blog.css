@@ -77,13 +77,15 @@
   line-height: 1.8;
   max-width: 58ch;
 }
+/* Date and reading time — facts a reader uses to decide, so --muted. Only the
+   row's index number stays at --faint, which is pure decoration. */
 .post-row__meta{
   margin-top: .9rem;
   display: flex;
   align-items: center;
   gap: .6rem;
   font-size: .78rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 .post-row__meta .dot{ opacity: .5; }
 
@@ -113,7 +115,7 @@
   align-items: center;
   gap: .6rem;
   font-size: .78rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 .article__meta time{ font-variant-numeric: tabular-nums; }
 
@@ -173,7 +175,9 @@
   inset-inline-start: -1.6rem;
   top: 0;
   font-size: .78rem;
-  color: var(--faint);
+  /* The step number *is* the list — an ordered list read without its numbers
+     has lost its ordering, so this is content, not ornament. */
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -215,7 +219,7 @@
 .callout{
   padding: 1.6rem 1.8rem;
   box-shadow: 0 0 0 1px var(--hairline);
-  background: rgba(47,111,237,.05);
+  background: rgba(60,120,240,.05);
   font-size: .96rem;
   line-height: 1.9;
 }
@@ -239,7 +243,7 @@
   padding-top: 1rem;
   border-top: 1px solid var(--hairline);
   font-size: .8rem;
-  color: var(--faint);
+  color: var(--muted);
   line-height: 1.75;
 }
 
@@ -265,7 +269,7 @@
   padding-top: 1rem;
   border-top: 1px solid var(--hairline);
   font-size: .8rem;
-  color: var(--faint);
+  color: var(--muted);
   line-height: 1.75;
   text-align: center;
 }
