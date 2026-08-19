@@ -170,7 +170,9 @@
         Python · AI · Web
       </p>
 
-      <h1 class="hero__name"><span class="hero__lens-wrap"><span>Mahyar Mozafar</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy">Mahyar Mozafar</span></span></h1>
+      <!-- data-text, not real text: see the note on the same line in /index.html.
+           As text it made the h1 read as the name twice over to a crawler. -->
+      <h1 class="hero__name"><span class="hero__lens-wrap"><span>Mahyar Mozafar</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy" data-text="Mahyar Mozafar"></span></span></h1>
 
       <p class="hero__tagline">
         Python &amp; <span class="accent">AI</span> developer
@@ -196,7 +198,7 @@
     </div>
 
     <h2 class="eyebrow" data-reveal>
-      <span class="eyebrow__num">01</span>
+      <span class="eyebrow__num" aria-hidden="true">01</span>
       <span class="rule" aria-hidden="true"></span>
       <span>About</span>
     </h2>
@@ -208,7 +210,7 @@
 
   <section class="skills" id="skills">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">02</span>
+      <span class="eyebrow__num" aria-hidden="true">02</span>
       <span class="rule" aria-hidden="true"></span>
       <span>Skills</span>
     </p>
@@ -266,7 +268,7 @@
 
   <section class="contact" id="contact">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">03</span>
+      <span class="eyebrow__num" aria-hidden="true">03</span>
       <span class="rule" aria-hidden="true"></span>
       <span>Contact</span>
     </p>

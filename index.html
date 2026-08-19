@@ -250,8 +250,14 @@
       </p>
 
       <!-- Base text and lens copy sit flush with no whitespace between them so the
-           absolutely-positioned copy overlays the base exactly. -->
-      <h1 class="hero__name"><span class="hero__lens-wrap"><span>مهیار مظفر</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy">مهیار مظفر</span></span></h1>
+           absolutely-positioned copy overlays the base exactly.
+
+           The lens copy carries its text in data-text and is painted by CSS
+           (see .hero__lens-copy::before), not written into the element. As real
+           text it was counted twice: aria-hidden keeps it from a screen reader,
+           but Google reads the DOM's text, so the h1 came out as the name run
+           together with itself. Generated content is not part of that text. -->
+      <h1 class="hero__name"><span class="hero__lens-wrap"><span>مهیار مظفر</span><span class="hero__lens-copy" aria-hidden="true" id="lensCopy" data-text="مهیار مظفر"></span></span></h1>
 
       <p class="hero__tagline">
         توسعه‌دهنده پایتون و <span class="accent">هوش مصنوعی</span>
@@ -281,7 +287,7 @@
          crawler what it is about. Renders identically: .eyebrow sets its own
          font-size and weight, and the reset already zeroes h2 margins. -->
     <h2 class="eyebrow" data-reveal>
-      <span class="eyebrow__num">۰۱</span>
+      <span class="eyebrow__num" aria-hidden="true">۰۱</span>
       <span class="rule" aria-hidden="true"></span>
       <span>بیوگرافی</span>
     </h2>
@@ -293,7 +299,7 @@
 
   <section class="skills" id="skills">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">۰۲</span>
+      <span class="eyebrow__num" aria-hidden="true">۰۲</span>
       <span class="rule" aria-hidden="true"></span>
       <span>تخصص‌ها</span>
     </p>
@@ -351,7 +357,7 @@
 
   <section class="projects" id="projects">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">۰۳</span>
+      <span class="eyebrow__num" aria-hidden="true">۰۳</span>
       <span class="rule" aria-hidden="true"></span>
       <span>پروژه‌ها</span>
     </p>
@@ -433,7 +439,7 @@
 
   <section class="writing" id="blog">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">۰۴</span>
+      <span class="eyebrow__num" aria-hidden="true">۰۴</span>
       <span class="rule" aria-hidden="true"></span>
       <span>بلاگ</span>
     </p>
@@ -491,7 +497,7 @@
 
   <section class="contact" id="contact">
     <p class="eyebrow" data-reveal>
-      <span class="eyebrow__num">۰۵</span>
+      <span class="eyebrow__num" aria-hidden="true">۰۵</span>
       <span class="rule" aria-hidden="true"></span>
       <span>تماس</span>
     </p>
