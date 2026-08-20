@@ -139,6 +139,13 @@
       <a class="btn" href="https://github.com/MahyarMozafar/demo-sandblast" target="_blank" rel="noopener">کد در گیت‌هاب</a>
     </div>
 
+    <figure class="figure figure--shot figure--lead" data-reveal>
+      <img src="/assets/projects/sandblast-lead.jpg"
+           alt="صفحه‌ی اول سایت سندبلاست وسط عملیات: بالابر قیچی زیر تیرآهن ایستاده و ماسه روی سطح زنگ‌زده پاشیده می‌شود"
+           width="1000" height="562" decoding="async">
+      <figcaption>صفحه‌ی اول، وسط عملیات: نیمی از تیرآهن هنوز زنگ‌زده است و نیم دیگر تمیز شده.</figcaption>
+    </figure>
+
     <div class="prose">
 
       <h2>مشکل چه بود؟</h2>
@@ -163,6 +170,13 @@
         هیچ فایلی اضافه دانلود نمی‌شود.
       </p>
 
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/sandblast-before-after.jpg"
+             alt="بخش قبل و بعد سایت: یک تیرآهن که سمت راستش زنگ‌زده و سمت چپش رنگ‌شده است، با دستگیره‌ای در وسط"
+             width="1000" height="774" loading="lazy" decoding="async">
+        <figcaption>پایین‌تر در همان صفحه: دستگیره را که بکشید، همان تیرآهن قبل و بعد از کار مقایسه می‌شود.</figcaption>
+      </figure>
+
       <h2>چطور کار می‌کند؟</h2>
       <p>
         صفحه‌ی اول <strong>روی صفحه قفل می‌شود</strong> و با اسکرول شما یک صحنه اجرا می‌شود:
@@ -174,6 +188,29 @@
         <li>فلز تمیز زیرش پیدا می‌شود</li>
         <li>بالابر برمی‌گردد و پشت سرش رنگ نهایی می‌نشیند</li>
       </ol>
+
+      <figure class="figure figure--shot" data-reveal>
+        <video id="sceneClip"
+               src="/assets/projects/sandblast-scene.mp4"
+               poster="/assets/projects/sandblast-scene-poster.jpg"
+               width="960" height="540"
+               autoplay loop muted playsinline preload="metadata"></video>
+        <figcaption>همان پنج مرحله، فشرده در چهار ثانیه. روی سایت این حرکت دست شماست — با اسکرول جلو و عقب می‌رود.</figcaption>
+      </figure>
+      <script>
+        /* The case study argues that scroll-driven motion has to answer to
+           "reduce motion". A clip of that motion looping on its own would be
+           the one place the site broke its own rule. */
+        (function () {
+          if (!window.matchMedia) return;
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          var v = document.getElementById('sceneClip');
+          if (!v) return;
+          v.removeAttribute('autoplay');
+          v.pause();
+          v.controls = true;
+        })();
+      </script>
       <p>
         همه‌ی این صحنه <strong>شکل‌های کشیده‌شده (SVG)</strong> است، حدود ۴۰ کیلوبایت،
         بدون حتی یک عکس. دلیلش ساده بود: روش اپل برای این کار، پخش کردن صد و بیست عکس
@@ -208,6 +245,13 @@
           تیرآهن رنگ‌شده‌ی نهایی را می‌بیند — یعنی بهترین حالت، نه یک قاب خالی.
         </li>
       </ul>
+
+      <figure class="figure figure--shot figure--phone" data-reveal>
+        <img src="/assets/projects/sandblast-mobile.jpg"
+             alt="نمای موبایل صفحه‌ی اول سایت سندبلاست: تیرآهن رنگ‌شده و چهار مرحله در یک ردیف زیر آن"
+             width="600" height="1108" loading="lazy" decoding="async">
+        <figcaption>همان صفحه روی موبایل: قفل‌شدن خاموش است و چهار مرحله به‌جای ستون، در یک ردیف می‌نشینند.</figcaption>
+      </figure>
 
       <h2>با چه ابزارهایی</h2>
       <p>

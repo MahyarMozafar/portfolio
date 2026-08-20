@@ -306,6 +306,38 @@
   text-align: center;
 }
 
+/* ---------- Screenshots and screen recordings ----------
+   .figure above was built for the hand-drawn SVG diagrams, which need a padded
+   card to sit in. A picture of a real screen already carries its own frame, so
+   it drops the card and takes a hairline instead — otherwise you get a box
+   inside a box. Both keep the same caption. */
+.figure--shot{
+  padding: 0;
+  box-shadow: none;
+}
+.figure--shot img,
+.figure--shot video{
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hairline);
+  background: var(--bg);
+}
+.figure--shot figcaption{
+  margin-top: .9rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* The one picture above the article body. Wider than the 40rem measure the
+   text keeps, because it is a whole page shrunk to fit and the detail is the
+   reason it is worth showing at all. */
+.figure--lead{ max-width: 52rem; }
+
+/* Portrait phone shots. Capped near phone size — at full width they tower
+   over the paragraph that introduces them. */
+.figure--phone img{ max-width: 300px; margin-inline: auto; }
+
 /* ---------- Comparison table ---------- */
 .cmp{
   width: 100%;
