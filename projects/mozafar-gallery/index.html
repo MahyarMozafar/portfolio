@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+  }, 3000);
+})();
+</script>
+
+<title>گالری مظفر — فروشگاه آنلاین طلا با قیمت لحظه‌ای | مهیار مظفر</title>
+<meta name="description" content="نمونه‌کار فروشگاه آنلاین طلا: قیمت هر قطعه از نرخ روز بازار حساب می‌شود، قفل اتمی موجودی برای قطعه‌های تک‌نسخه، ورود با پیامک و پنل مدیریت. با Next.js و TypeScript.">
+<meta name="author" content="مهیار مظفر">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/projects/mozafar-gallery/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-v2.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="مهیار مظفر">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="گالری مظفر — فروشگاه آنلاین طلا با قیمت لحظه‌ای">
+<meta property="og:description" content="قیمت از نرخ روز بازار حساب می‌شود و دو نفر نمی‌توانند یک انگشتر را همزمان بخرند.">
+<meta property="og:url" content="https://mahyarmozafar.ir/projects/mozafar-gallery/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="گالری مظفر — فروشگاه آنلاین طلا با قیمت لحظه‌ای">
+<meta name="twitter:description" content="قیمت از نرخ روز بازار حساب می‌شود و دو نفر نمی‌توانند یک انگشتر را همزمان بخرند.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://mahyarmozafar.ir/projects/mozafar-gallery/#project",
+      "name": "گالری مظفر — فروشگاه آنلاین طلا و جواهر",
+      "description": "فروشگاه آنلاین طلا با قیمت‌گذاری از نرخ لحظه‌ای بازار، قفل اتمی موجودی برای قطعه‌های تک‌نسخه، ورود با پیامک و پنل مدیریت کامل.",
+      "inLanguage": "fa-IR",
+      "dateCreated": "2026-09-04",
+      "dateModified": "2026-09-05",
+      "image": "https://mahyarmozafar.ir/assets/projects/mozafar-gallery.jpg",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mahyarmozafar.ir/projects/mozafar-gallery/" },
+      "isPartOf": { "@id": "https://mahyarmozafar.ir/projects/#collection" },
+      "author": { "@id": "https://mahyarmozafar.ir/#person" },
+      "creator": { "@id": "https://mahyarmozafar.ir/#person" },
+      "keywords": ["فروشگاه آنلاین طلا", "طراحی سایت طلافروشی", "قیمت لحظه‌ای طلا", "Next.js", "فروشگاه اینترنتی"],
+      "about": ["Next.js", "TypeScript", "React", "SQLite"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": "Mahyar Mozafar",
+      "url": "https://mahyarmozafar.ir/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mahyarmozafar.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "پروژه‌ها", "item": "https://mahyarmozafar.ir/projects/" },
+        { "@type": "ListItem", "position": 3, "name": "گالری مظفر — فروشگاه آنلاین طلا", "item": "https://mahyarmozafar.ir/projects/mozafar-gallery/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="مهیار مظفر — رفتن به صفحه اصلی">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="/#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="/#skills"><span class="nav__num" aria-hidden="true">۰۲</span><span>تخصص‌ها</span></a>
+    <a href="/projects/" aria-current="page"><span class="nav__num" aria-hidden="true">۰۳</span><span>پروژه‌ها</span></a>
+    <a href="/blog/"><span class="nav__num" aria-hidden="true">۰۴</span><span>بلاگ</span></a>
+    <a href="/#contact"><span class="nav__num" aria-hidden="true">۰۵</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <article class="article">
+
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num" aria-hidden="true">۰۵</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>فروشگاه آنلاین طلا</span>
+    </p>
+
+    <h1 class="article__title" data-reveal>گالری مظفر — فروشگاه آنلاین طلا با قیمت لحظه‌ای</h1>
+
+    <p class="article__lead" data-reveal>فروشگاهی که قیمت ثابت ندارد. هر قطعه از نرخ روز بازار حساب می‌شود، و دو نفر نمی‌توانند یک انگشتر تک‌نسخه‌ای را همزمان بخرند.</p>
+
+    <p class="project-meta" data-reveal><span>Next.js</span><span>TypeScript</span><span>React</span><span>SQLite</span></p>
+
+    <div class="cta__row" style="justify-content:flex-start;margin-top:1.8rem" data-reveal>
+      <a class="btn" href="https://github.com/MahyarMozafar/mozafar-gallery" target="_blank" rel="noopener">کد در گیت‌هاب</a>
+    </div>
+
+    <figure class="figure figure--shot figure--lead" data-reveal>
+      <img src="/assets/projects/mozafar-gallery.jpg"
+           alt="صفحه‌ی اول گالری مظفر: نوار سیاه قیمت لحظه‌ای طلا در بالا، هدر سفید با نشان نگین، و تصویر یک گردنبند مروارید"
+           width="900" height="562" decoding="async">
+      <figcaption>نوار بالای صفحه نرخ ۱۸ و ۲۴ عیار را با درصد تغییر و تاریخ شمسی نشان می‌دهد — همان کاری که فروشگاه‌های واقعی طلا می‌کنند.</figcaption>
+    </figure>
+
+    <div class="prose">
+
+      <h2>مشکل چه بود؟</h2>
+      <p>
+        یک فروشگاه معمولی روی هر محصول یک قیمت می‌نویسد و تمام. طلافروشی این‌طور نیست.
+        قیمت طلا هر روز — گاهی هر ساعت — عوض می‌شود. اگر قیمت‌ها دستی نوشته شوند،
+        یا مغازه ضرر می‌کند یا مشتری را از دست می‌دهد.
+      </p>
+      <p>
+        سه مسئله‌ی دیگر هم هست که در فروشگاه‌های معمولی وجود ندارد:
+      </p>
+      <ul>
+        <li><strong>هر قطعه یکی است.</strong> یک انگشتر دست‌ساز دومی ندارد. اگر دو نفر همزمان بخرند، چه می‌شود؟</li>
+        <li><strong>خریدار ایرانی جزئیات می‌خواهد.</strong> فقط قیمت کافی نیست؛ باید وزن، عیار، اجرت، سود و مالیات را جدا ببیند.</li>
+        <li><strong>قیمت وسط خرید عوض می‌شود.</strong> مشتری مبلغی را می‌بیند و بعد کارت به کارت می‌کند.</li>
+      </ul>
+
+      <h2>چی ساختم؟</h2>
+      <p>
+        یک فروشگاه کامل با <strong>۲۱ محصول نمونه</strong> در چهار دسته که هر کدام
+        قانون قیمت‌گذاری خودش را دارد: زیورآلات طلا، سکه، شمش، و نقره.
+      </p>
+      <p>
+        به‌علاوه ورود با پیامک، سبد خرید مهمان، ماشین‌حساب قیمت طلا، مجله، و
+        یک پنل مدیریت که مغازه‌دار بدون برنامه‌نویس می‌تواند محصول اضافه کند و نرخ را عوض کند.
+      </p>
+
+      <h2>قیمت چطور حساب می‌شود؟</h2>
+      <p>
+        این بخش قلب پروژه است. فرمول رسمی ایرانی این است:
+      </p>
+      <div class="table-scroll">
+      <table class="cmp">
+        <tbody>
+          <tr><th>۱. ارزش طلا</th><td>وزن × نرخ گرم آن عیار</td></tr>
+          <tr><th>۲. اجرت ساخت</th><td>ارزش طلا × درصد اجرت</td></tr>
+          <tr><th>۳. سود فروشنده</th><td>(ارزش طلا + اجرت) × درصد سود</td></tr>
+          <tr><th>۴. مالیات</th><td>(اجرت + سود) × درصد مالیات</td></tr>
+          <tr><th>قیمت نهایی</th><td>جمع چهار مورد بالا</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        دو نکته که خیلی از منابع فارسی اشتباه می‌نویسند، و من هر دو را تست‌دار کردم:
+        <strong>سود روی «طلا + اجرت» حساب می‌شود</strong>، نه فقط روی اجرت. و
+        <strong>مالیات هرگز روی خود طلا بسته نمی‌شود</strong> — طلای خام طبق ماده ۲۶
+        قانون مالیات بر ارزش افزوده معاف است. بستن مالیات روی کل فاکتور تخلف است.
+      </p>
+
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/mozafar-pdp.jpg"
+             alt="صفحه‌ی محصول: عکس انگشتر در سمت راست و جدول کامل وزن، عیار، اجرت، سود، مالیات و قیمت نهایی در سمت چپ"
+             width="900" height="562" loading="lazy" decoding="async">
+        <figcaption>صفحه‌ی محصول، ریز به ریز. خریدار ایرانی دقیقاً دنبال همین جدول می‌گردد.</figcaption>
+      </figure>
+
+      <h2>فقط یک عدد از بیرون گرفته می‌شود</h2>
+      <p>
+        قبل از ساختن، دو تا از بهترین فروشگاه‌های طلای ایران را باز کردم و
+        ترافیک شبکه‌شان را خواندم تا ببینم قیمت را از کجا می‌گیرند.
+        نتیجه جالب بود: <strong>هیچ‌کدام از مرورگر به هیچ API وصل نمی‌شوند.</strong>
+        قیمت از قبل داخل صفحه‌ای است که سرور می‌فرستد.
+      </p>
+      <p>
+        یکی از آن‌ها هر دو عیار را نشان می‌داد. حساب کردم:
+        <code>۱۹٬۹۵۰٬۰۰۰ × ۹۹۵ ÷ ۷۵۰ = ۲۶٬۴۶۷٬۰۰۰</code> — دقیقاً همان عدد ۲۴ عیارشان.
+        یعنی ۲۴ عیار را <em>حساب</em> می‌کنند، نه اینکه بگیرند.
+      </p>
+      <p>
+        همین کار را کردم: فقط نرخ <strong>گرم ۱۸ عیار</strong> گرفته می‌شود و
+        ۲۱ عیار، ۲۴ عیار، نرخ خرید از مشتری (۷۴۰) و مثقال از رویش حساب می‌شوند.
+        درخواست کمتر، و عیارها هیچ‌وقت با هم نمی‌خوانند نمی‌شوند.
+      </p>
+
+      <h2>دو نفر، یک انگشتر</h2>
+      <p>
+        این سخت‌ترین بخش بود. روش غلط این است: موجودی را بخوان، چک کن بزرگ‌تر از صفر است،
+        بعد کم کن. اگر دو نفر <em>دقیقاً همزمان</em> این کار را بکنند، هر دو عدد «۱» را
+        می‌بینند، هر دو از چک رد می‌شوند، و یک انگشتر دو بار فروخته می‌شود.
+      </p>
+      <p>
+        راه درست این است که شرط و تغییر را در <strong>یک دستور</strong> بدهی و بگذاری
+        خود پایگاه داده تصمیم بگیرد:
+      </p>
+      <pre><code>UPDATE products SET stock = stock - 1
+WHERE id = ? AND stock &gt;= 1</code></pre>
+      <p>
+        پایگاه داده تضمین می‌کند فقط یکی برنده شود. بقیه «۰ سطر تغییر کرد» می‌گیرند و
+        پیام «متأسفانه این قطعه فروخته شد» می‌بینند.
+      </p>
+      <p>
+        برای اینکه فقط حرف نباشد، تستش نوشتم: <strong>۵۰ درخواست همزمان برای یک قطعه</strong>
+        فرستادم. نتیجه باید همیشه یکی باشد — و هست: دقیقاً ۱ برنده، ۴۹ بازنده، موجودی صفر.
+        نه دو تا، نه منفی.
+      </p>
+
+      <h2>اگر ۱۰٬۰۰۰ نفر همزمان بیایند؟</h2>
+      <p>
+        اولین چیزی که می‌شکند، API قیمت طلا است. اگر هر بازدیدکننده یک درخواست بفرستد،
+        سهمیه‌ی روزانه در چند دقیقه تمام می‌شود.
+      </p>
+      <p>
+        راه‌حل: نرخ <strong>۶۰ ثانیه کش می‌شود</strong>. یعنی هر چقدر آدم بیاید،
+        دقیقه‌ای یک بار سراغ منبع می‌رویم — <strong>۱٬۴۴۰ درخواست در روز، ثابت</strong>،
+        چه ۱۰ نفر بیایند چه ۱۰۰٬۰۰۰ نفر.
+      </p>
+      <p>
+        تست بار گرفتم. نتیجه روی همین لپ‌تاپ، با نسخه‌ی نهایی و صفر خطا در ۱٬۶۰۰ درخواست:
+      </p>
+      <div class="table-scroll">
+      <table class="cmp">
+        <thead><tr><th>صفحه</th><th>درخواست در ثانیه</th><th>p95</th><th>خطا</th></tr></thead>
+        <tbody>
+          <tr><th>صفحه اصلی</th><td>۸۳۳</td><td>۱۳ms</td><td>۰</td></tr>
+          <tr><th>صفحه محصول</th><td>۳۴۷</td><td>۲۹۶ms</td><td>۰</td></tr>
+          <tr><th>فروشگاه (۲۱ محصول)</th><td>۲۸۴</td><td>۳۴۸ms</td><td>۰</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>پنل مدیریت</h2>
+      <p>
+        مغازه‌دار نباید برای عوض کردن قیمت به برنامه‌نویس زنگ بزند.
+        بالای داشبورد یک کادر هست که <strong>فقط یک عدد</strong> می‌خواهد: نرخ گرم ۱۸ عیار.
+        بقیه‌ی عیارها همان‌جا زنده حساب می‌شوند و با ذخیره، قیمت همه‌ی محصولات با هم عوض می‌شود.
+      </p>
+
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/mozafar-admin.jpg"
+             alt="پنل مدیریت: کادر زرد وارد کردن نرخ طلا در بالا و کارت‌های آمار شامل ارزش کل موجودی و وزن کل طلا"
+             width="900" height="562" loading="lazy" decoding="async">
+        <figcaption>داشبورد: ارزش کل موجودی به تومان و وزن کل طلا، با نرخ همان لحظه حساب می‌شوند.</figcaption>
+      </figure>
+
+      <p>
+        هنگام ساختن محصول هم قیمت را دستی وارد نمی‌کنی. وزن و عیار و اجرت را می‌دهی و
+        <strong>نتیجه را کنار فرم زنده می‌بینی</strong> — قبل از اینکه ذخیره کنی.
+      </p>
+
+      <h2>روی موبایل</h2>
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/mozafar-mobile.jpg"
+             alt="دو نمای موبایل کنار هم: صفحه‌ی اول با منوی همبرگری، و صفحه‌ی محصول"
+             width="900" height="562" loading="lazy" decoding="async">
+        <figcaption>منوی کشویی در راست‌به‌چپ از سمت راست باز می‌شود، و نوار قیمت به جای شکستن افقی می‌لغزد.</figcaption>
+      </figure>
+
+      <h2>با چه ابزارهایی</h2>
+      <div class="table-scroll">
+      <table class="cmp">
+        <tbody>
+          <tr><th>چارچوب</th><td>Next.js ۱۵ با App Router و TypeScript</td></tr>
+          <tr><th>پایگاه داده</th><td>SQLite داخلی خود Node — بدون هیچ وابستگی</td></tr>
+          <tr><th>فونت</th><td>وزیرمتن، خودمیزبان</td></tr>
+          <tr><th>ورود</th><td>موبایل + کد پیامکی؛ کد و توکن هر دو هش می‌شوند</td></tr>
+          <tr><th>تست</th><td>۱۶ تست: موتور قیمت و خرید همزمان</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>نتیجه</h2>
+      <p>
+        فروشگاهی که قیمتش زنده است، موجودی‌اش قابل اعتماد است، و مغازه‌دار خودش
+        می‌تواند بچرخاندش. مهم‌تر از ظاهرش، چیزهایی است که دیده نمی‌شوند:
+        فرمول درست مالیات، قفلی که دوبار فروختن را غیرممکن می‌کند،
+        و کشی که سایت را زیر فشار نگه می‌دارد.
+      </p>
+      <p>
+        این پروژه ادامه دارد — مرحله‌ی بعد ثبت سفارش کامل است:
+        رزرو موجودی، آپلود رسید کارت به کارت، تأیید مدیر و فاکتور چاپی.
+      </p>
+
+    </div>
+
+    <div class="cta" data-reveal>
+      <p class="cta__title">پروژه‌ای دارید؟</p>
+      <p class="cta__text">اگر کاری شبیه این لازم دارید، خوشحال می‌شم دربارش حرف بزنیم.</p>
+      <div class="cta__row">
+        <a class="btn btn--accent" href="/#contact">تماس با من</a>
+      </div>
+    </div>
+
+    <nav class="article__foot" aria-label="پیمایش پروژه‌ها">
+      <a href="/projects/">→ همه پروژه‌ها</a>
+      <a href="/projects/sandblast-website/">پروژه بعدی: سایت شرکت سندبلاست</a>
+    </nav>
+
+  </article>
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
