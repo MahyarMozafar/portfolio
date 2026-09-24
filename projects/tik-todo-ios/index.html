@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js-reveal');
+  setTimeout(function () {
+    if (window.__revealLive) return;
+    root.classList.remove('js-reveal');
+    root.style.overflowY = '';
+    if (document.body) document.body.style.overflowY = '';
+  }, 3000);
+})();
+</script>
+
+<title>تیک — اپ کارهای روزانه برای آیفون و آیپد | مهیار مظفر</title>
+<meta name="description" content="نمونه‌کار iOS: اپ کارهای روزانه با SwiftUI و SwiftData برای iOS 27. ظاهر شیشه‌ای Liquid Glass، فارسی و انگلیسی با تقویم شمسی، یادآور، و ویجتی که از روی صفحه‌ی اصلی گوشی تیک می‌خورد.">
+<meta name="author" content="مهیار مظفر">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#050608">
+<link rel="canonical" href="https://mahyarmozafar.ir/projects/tik-todo-ios/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-v2.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="مهیار مظفر">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="تیک — اپ کارهای روزانه برای آیفون و آیپد">
+<meta property="og:description" content="کار را اضافه کن و تیک بزن. شیشه‌ای مثل iOS 27، دوزبانه با تقویم شمسی، و ویجتی که از روی صفحه‌ی اصلی گوشی تیک می‌خورد.">
+<meta property="og:url" content="https://mahyarmozafar.ir/projects/tik-todo-ios/">
+<meta property="og:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="تیک — اپ کارهای روزانه برای آیفون و آیپد">
+<meta name="twitter:description" content="کار را اضافه کن و تیک بزن. شیشه‌ای مثل iOS 27، دوزبانه با تقویم شمسی، و ویجتی که از روی صفحه‌ی اصلی گوشی تیک می‌خورد.">
+<meta name="twitter:image" content="https://mahyarmozafar.ir/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://mahyarmozafar.ir/projects/tik-todo-ios/#project",
+      "name": "تیک — اپ کارهای روزانه برای آیفون و آیپد",
+      "description": "اپ بومی iOS برای کارهای روزانه با SwiftUI و SwiftData: ظاهر Liquid Glass، فارسی و انگلیسی با تقویم شمسی، یادآور، و ویجتی که از روی صفحه‌ی اصلی تیک می‌خورد.",
+      "inLanguage": "fa-IR",
+      "dateCreated": "2026-09-24",
+      "dateModified": "2026-09-24",
+      "image": "https://mahyarmozafar.ir/assets/projects/tik.jpg",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://mahyarmozafar.ir/projects/tik-todo-ios/"
+      },
+      "isPartOf": {
+        "@id": "https://mahyarmozafar.ir/projects/#collection"
+      },
+      "author": {
+        "@id": "https://mahyarmozafar.ir/#person"
+      },
+      "creator": {
+        "@id": "https://mahyarmozafar.ir/#person"
+      },
+      "keywords": [
+        "اپ iOS",
+        "اپ کارهای روزانه",
+        "تقویم شمسی",
+        "ویجت آیفون",
+        "SwiftUI",
+        "Liquid Glass"
+      ],
+      "about": [
+        "Swift",
+        "SwiftUI",
+        "SwiftData",
+        "WidgetKit",
+        "App Intents"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mahyarmozafar.ir/#person",
+      "name": "مهیار مظفر",
+      "alternateName": "Mahyar Mozafar",
+      "url": "https://mahyarmozafar.ir/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "خانه",
+          "item": "https://mahyarmozafar.ir/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "پروژه‌ها",
+          "item": "https://mahyarmozafar.ir/projects/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "تیک — اپ کارهای روزانه برای آیفون و آیپد",
+          "item": "https://mahyarmozafar.ir/projects/tik-todo-ios/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preload" href="/assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="مهیار مظفر — رفتن به صفحه اصلی">
+    <img src="/assets/logo.svg" alt="" width="40" height="40">
+  </a>
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navMenu" aria-label="باز کردن منو">
+    <span class="nav__toggle-bar"></span>
+    <span class="nav__toggle-bar"></span>
+  </button>
+  <nav class="nav__links" id="navMenu" aria-label="پیمایش اصلی">
+    <span class="nav__glow" aria-hidden="true"></span>
+    <button class="nav__close" id="navClose" type="button" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+    <a href="/#bio"><span class="nav__num" aria-hidden="true">۰۱</span><span>بیوگرافی</span></a>
+    <a href="/#skills"><span class="nav__num" aria-hidden="true">۰۲</span><span>تخصص‌ها</span></a>
+    <a href="/projects/" aria-current="page"><span class="nav__num" aria-hidden="true">۰۳</span><span>پروژه‌ها</span></a>
+    <a href="/blog/"><span class="nav__num" aria-hidden="true">۰۴</span><span>بلاگ</span></a>
+    <a href="/#contact"><span class="nav__num" aria-hidden="true">۰۵</span><span>تماس</span></a>
+    <span class="nav__note" aria-hidden="true">در دسترس برای همکاری</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <article class="article">
+
+    <p class="eyebrow" data-reveal>
+      <span class="eyebrow__num" aria-hidden="true">۰۶</span>
+      <span class="rule" aria-hidden="true"></span>
+      <span>اپ iOS</span>
+    </p>
+
+    <h1 class="article__title" data-reveal>تیک — اپ کارهای روزانه برای آیفون و آیپد</h1>
+
+    <p class="article__lead" data-reveal>یک اپ ساده برای کارهای هر روز: کار را اضافه می‌کنی، تیک می‌زنی، تمام. ظاهرش شیشه‌ای و مینیمال است، مثل خود <span dir="ltr">iOS 27</span>. فارسی و انگلیسی دارد، تقویمش شمسی است، و ویجتش از روی صفحه‌ی اصلی گوشی تیک می‌خورد.</p>
+
+    <p class="project-meta" data-reveal><span>Swift</span><span>SwiftUI</span><span>SwiftData</span><span>WidgetKit</span></p>
+
+    <div class="cta__row" style="justify-content:flex-start;margin-top:1.8rem" data-reveal>
+      <a class="btn" href="https://github.com/MahyarMozafar/tik-todo-ios" target="_blank" rel="noopener">کد در گیت‌هاب</a>
+    </div>
+
+    <figure class="figure figure--shot figure--lead" data-reveal>
+      <img src="/assets/projects/tik.jpg"
+           alt="سه نمای صفحه‌ی «امروز» در اپ تیک: انگلیسی و روشن، فارسی و راست‌به‌چپ، و تیره؛ با کارت‌های شیشه‌ای و نوار پیشرفت"
+           width="900" height="562" decoding="async">
+      <figcaption>صفحه‌ی «امروز» در سه حالت: انگلیسی، فارسی راست‌به‌چپ، و تیره. کارهای انجام‌شده خط می‌خورند و به پایین فهرست می‌روند.</figcaption>
+    </figure>
+
+    <div class="prose">
+
+      <h2>مشکل چه بود؟</h2>
+      <p>
+        اپ‌های کار روزانه معمولاً یکی از این دو مشکل را دارند: یا آن‌قدر ساده‌اند که
+        به درد برنامه‌ریزی نمی‌خورند، یا آن‌قدر شلوغ‌اند که اضافه کردن یک کار ساده،
+        خودش یک کار حساب می‌شود.
+      </p>
+      <p>
+        من یک چیز می‌خواستم: صبح کارهای امروز را سریع بنویسم و در طول روز تیکشان بزنم.
+        و چون فارسی‌زبانم، <strong>تقویم شمسی و راست‌به‌چپ درست</strong> برایم مهم بود —
+        نه یک ترجمه‌ی نصفه‌نیمه.
+      </p>
+
+      <h2>چی ساختم؟</h2>
+      <p>
+        «تیک»، یک اپ بومی iOS برای آیفون و آیپد. صفحه‌ی اولش «امروز» است: کارهای امروز،
+        کارهای عقب‌افتاده، و یک نوار پیشرفت. هر کار می‌تواند یادداشت، زیرکار، تاریخ و ساعت،
+        اولویت، عکس و تکرار داشته باشد — ولی هر کدام را که لازم نداری، از تنظیمات خاموش
+        می‌کنی و از فرم حذف می‌شود.
+      </p>
+      <ul>
+        <li>لیست‌های شخصی با رنگ و آیکون، و چهار لیست هوشمند: امروز، برنامه‌ریزی‌شده، همه، انجام‌شده‌ها</li>
+        <li>یادآور با دو دکمه روی خود اعلان: «انجام شد» و «۱۰ دقیقه‌ی دیگر یادم بنداز»</li>
+        <li>ویجت صفحه‌ی اصلی در سه اندازه، و سه ویجت برای صفحه‌ی قفل</li>
+        <li>تم روشن و تیره، ۱۱ رنگ اصلی و ۶ آیکون برای خود اپ</li>
+        <li>و وقتی آخرین کار روز تیک بخورد، کمی کاغذ رنگی روی صفحه می‌ریزد</li>
+      </ul>
+
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/tik-screens.jpg"
+             alt="سه صفحه از اپ تیک: فیلد افزودن سریع که بالای کیبورد باز شده، فرم ویرایش کار به فارسی با تاریخ شمسی، و صفحه‌ی لیست‌ها"
+             width="900" height="562" loading="lazy" decoding="async">
+        <figcaption>افزودن سریع، فرم ویرایش کار با تاریخ شمسی، و صفحه‌ی لیست‌ها.</figcaption>
+      </figure>
+
+      <h2>یک دکمه که به فیلد تبدیل می‌شود</h2>
+      <p>
+        سریع‌ترین راه اضافه کردن کار، نوشتنش است — نه باز کردن یک فرم. دکمه‌ی شیشه‌ای
+        «+» پایین صفحه با یک لمس، با افکت <span dir="ltr">Liquid Glass</span> «ذوب» می‌شود
+        و به یک فیلد متن تبدیل می‌شود.
+      </p>
+      <p>
+        نکته‌ی اصلی این است که <strong>بعد از زدن اینتر، فیلد بسته نمی‌شود.</strong> صبح
+        می‌شود پنج کار را پشت‌سرهم تایپ کرد، بدون یک لمس اضافه. برای جزئیات بیشتر هم
+        دکمه‌ای کنار فیلد هست که فرم کامل را با همان عنوان باز می‌کند.
+      </p>
+
+      <h2>فارسی واقعی، نه فقط ترجمه</h2>
+      <p>
+        زبان اپ از داخل خود اپ عوض می‌شود، مستقل از زبان گوشی. با یک لمس، کل رابط
+        راست‌به‌چپ می‌شود و فونت وزیرمتن جای فونت سیستم را می‌گیرد.
+      </p>
+      <p>
+        تقویم پیش‌فرض شمسی است و هفته از شنبه شروع می‌شود. تکرار «هر ماه» هم با ماه‌های
+        شمسی حساب می‌شود: کاری که اول مهر است، دفعه‌ی بعد اول آبان می‌آید. و به انتخاب
+        خودم، <strong>عددها همه‌جا لاتین می‌مانند</strong> — در ساعت، در تاریخ، و حتی در
+        درصد پیشرفت.
+      </p>
+
+      <h2>ویجتی که تیک می‌خورد</h2>
+
+      <figure class="figure figure--shot figure--phone" data-reveal>
+        <img src="/assets/projects/tik-widgets.jpg"
+             alt="صفحه‌ی اصلی آیفون با دو ویجت تیک در اندازه‌ی بزرگ و متوسط که کارهای امروز را نشان می‌دهند"
+             width="600" height="1304" loading="lazy" decoding="async">
+        <figcaption>ویجت بزرگ و متوسط روی صفحه‌ی اصلی. دایره‌ی کنار هر کار، همان‌جا تیک می‌خورد.</figcaption>
+      </figure>
+
+      <p>
+        ویجت و اپ دو برنامه‌ی جدا هستند، ولی باید یک داده را ببینند. پایگاه داده
+        (<span dir="ltr">SwiftData</span>) در یک <span dir="ltr">App Group</span> مشترک ذخیره می‌شود
+        تا هر دو به آن دسترسی داشته باشند، و تیک زدن از روی ویجت با
+        <span dir="ltr">App Intents</span> انجام می‌شود — بدون اینکه اپ باز شود.
+      </p>
+      <p>
+        بخش سختش این بود که اپ بعدش بفهمد داده عوض شده. ویجت در یک فرایند جدا کار
+        می‌کند، پس اپ هنوز نسخه‌ی قدیمی را در حافظه دارد. راه‌حل: ویجت بعد از هر تغییر
+        یک «مهر زمان» در تنظیمات مشترک می‌گذارد، و اپ وقتی دوباره باز می‌شود آن را
+        می‌بیند و داده را از نو می‌خواند.
+      </p>
+
+      <h2>کارهای تکراری</h2>
+      <p>
+        وقتی یک کار تکراری را تیک می‌زنی، نسخه‌ی بعدی‌اش خودکار ساخته می‌شود — و اگر
+        تیک را برداری، همان نسخه هم پاک می‌شود. کاری که دیر تیک بخورد هم دوباره در گذشته
+        ساخته نمی‌شود؛ نسخه‌ی بعدی همیشه از فردا به بعد است.
+      </p>
+
+      <div class="callout" data-reveal>
+        <span class="callout__label">درسی که از تست‌ها گرفتم</span>
+        <p>
+          نسخه‌ی اول، «هر ماه» را فقط از تاریخ آخرین کار حساب می‌کرد. تست نشان داد کاری که
+          ۳۱ ژانویه بود، بعد از فوریه ۲۸ام می‌شد — و <strong>برای همیشه ۲۸ام می‌ماند.</strong>
+        </p>
+        <p>
+          حالا روز اصلی ماه کنار قانون تکرار نگه داشته می‌شود و هر وقت ماه اجازه بدهد، کار
+          به همان روز برمی‌گردد. در تقویم شمسی هم همین است: کار ۳۱ شهریور در ماه‌های ۳۰روزه
+          روز ۳۰ می‌آید، و در فروردین بعد دوباره ۳۱ام.
+        </p>
+      </div>
+
+      <h2>روی آیپد</h2>
+      <figure class="figure figure--shot" data-reveal>
+        <img src="/assets/projects/tik-ipad.jpg"
+             alt="اپ تیک روی آیپد: نوار کناری با لیست‌ها و صفحه‌ی امروز؛ یکی انگلیسی و روشن، دیگری فارسی و تیره"
+             width="900" height="562" loading="lazy" decoding="async">
+        <figcaption>روی آیپد، تب‌ها جایشان را به یک نوار کناری با جستجو می‌دهند. در حالت فارسی، نوار کناری به سمت راست می‌رود.</figcaption>
+      </figure>
+
+      <h2>تست‌ها</h2>
+      <p>
+        منطق اپ با <strong>۳۵ تست واحد</strong> پوشش داده شده: تاریخ شمسی و میلادی با عدد
+        لاتین، همه‌ی قانون‌های تکرار، اینکه کدام کار در «امروز» بیاید و به چه ترتیبی، و
+        تیک زدن از روی ویجت. <strong>۱۷ تست رابط کاربری</strong> هم مسیرهای اصلی را مثل یک
+        کاربر واقعی امتحان می‌کنند — و عکس‌های همین صفحه را هم همان تست‌ها گرفته‌اند.
+      </p>
+
+      <h2>با چه ابزارهایی</h2>
+      <div class="table-scroll">
+      <table class="cmp">
+        <tbody>
+          <tr><th>رابط کاربری</th><td>SwiftUI برای iOS 27، با Liquid Glass</td></tr>
+          <tr><th>داده</th><td>SwiftData، مشترک با ویجت از طریق App Group</td></tr>
+          <tr><th>ویجت</th><td>WidgetKit و App Intents</td></tr>
+          <tr><th>یادآور</th><td>UserNotifications، با دکمه روی خود اعلان</td></tr>
+          <tr><th>زبان‌ها</th><td>String Catalog با انگلیسی و فارسی</td></tr>
+          <tr><th>تست</th><td>۳۵ تست واحد با Swift Testing و ۱۷ تست رابط کاربری</td></tr>
+          <tr><th>جزئیات</th><td>آیکون‌ها با کد کشیده شده‌اند و صداها از فرمول ریاضی ساخته شده‌اند</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>نتیجه</h2>
+      <p>
+        اپی برای کارهای هر روز: سریع برای نوشتن، راحت برای تیک زدن، و فارسیِ درست.
+        برای استفاده‌ی شخصی ساخته شده، پس در اپ‌استور نیست — با یک
+        <span dir="ltr">Apple ID</span> رایگان، مستقیم از <span dir="ltr">Xcode</span> روی آیفون
+        نصب می‌شود. راهنمای نصبش در گیت‌هاب هست.
+      </p>
+
+    </div>
+
+    <div class="cta" data-reveal>
+      <p class="cta__title">پروژه‌ای دارید؟</p>
+      <p class="cta__text">اگر کاری شبیه این لازم دارید، خوشحال می‌شم دربارش حرف بزنیم.</p>
+      <div class="cta__row">
+        <a class="btn btn--accent" href="/#contact">تماس با من</a>
+      </div>
+    </div>
+
+    <nav class="article__foot" aria-label="پیمایش پروژه‌ها">
+      <a href="/projects/">→ همه پروژه‌ها</a>
+      <a href="/projects/mozafar-gallery/">پروژه بعدی: گالری مظفر</a>
+    </nav>
+
+  </article>
+</main>
+
+<script src="/js/vendor/gsap.min.js"></script>
+<script src="/js/vendor/lenis.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
